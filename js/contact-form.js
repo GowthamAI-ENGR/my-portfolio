@@ -1,5 +1,5 @@
 /* ========================================
-   CONTACT FORM — Validation + mailto + Success
+   CONTACT FORM — Validation + Formspree
    ======================================== */
 
 (function () {
@@ -7,7 +7,8 @@
 
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
-  const EMAIL_TO = 'gowtham120205@gmail.com';
+  const submitBtn = form ? form.querySelector('.form-submit') : null;
+  const FORMSPREE_URL = 'https://formspree.io/f/xvkorzdk';
 
   if (!form) return;
 
@@ -70,38 +71,73 @@
     return valid;
   }
 
-  function showSuccess() {
+  function setLoading(loading) {
+    if (!submitBtn) return;
+    if (loading) {
+      submitBtn.classList.add('form-submit--loading');
+      submitBtn.disabled = true;
+      submitBtn._originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending...';
+    } else {
+      submitBtn.classList.remove('form-submit--loading');
+      submitBtn.disabled = false;
+      if (submitBtn._originalText) {
+        submitBtn.innerHTML = submitBtn._originalText;
+      }
+    }
+  }
+
+  function showMessage(type, text) {
     status.innerHTML = '';
-    const check = document.createElement('span');
-    check.className = 'success-check';
-    check.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-    status.appendChild(check);
-    status.appendChild(document.createTextNode('Message sent successfully. Thanks for reaching out!'));
-    status.classList.add('form-success');
-    form.reset();
+    status.classList.remove('form-success', 'form-error');
+
+    if (type === 'success') {
+      const check = document.createElement('span');
+      check.className = 'success-check';
+      check.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      status.appendChild(check);
+      status.appendChild(document.createTextNode(text));
+      status.classList.add('form-success');
+      form.reset();
+    } else {
+      status.textContent = text;
+      status.classList.add('form-error');
+    }
+
     setTimeout(() => {
-      status.classList.remove('form-success');
-      status.textContent = '';
+      status.classList.remove('form-success', 'form-error');
+      status.innerHTML = '';
     }, 6000);
   }
 
-  function buildMailto() {
-    const subject = encodeURIComponent(`Project enquiry from ${nameInput.value.trim()}${companyInput.value.trim() ? ' (' + companyInput.value.trim() + ')' : ''}`);
-    const body = encodeURIComponent(
-      `Name: ${nameInput.value.trim()}\n` +
-      `Email: ${emailInput.value.trim()}\n` +
-      `Company / Organization: ${companyInput.value.trim() || 'N/A'}\n` +
-      `Project Type: ${typeSelect.value}\n\n` +
-      `Message:\n${messageInput.value.trim()}`
-    );
-    return `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
-  }
-
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validate()) return;
-    window.location.href = buildMailto();
-    showSuccess();
+
+    setLoading(true);
+
+    const formData = new FormData(form);
+    formData.append('_subject', `Portfolio enquiry from ${nameInput.value.trim()}`);
+
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        showMessage('success', 'Message sent successfully. Thanks for reaching out!');
+      } else {
+        const data = await response.json().catch(() => null);
+        const errMsg = (data && data.errors) ? data.errors.map(e => e.message).join(', ') : 'Something went wrong. Please try again.';
+        showMessage('error', errMsg);
+      }
+    } catch {
+      showMessage('error', 'Network error. Please check your connection and try again.');
+    } finally {
+      setLoading(false);
+    }
   });
 
   [nameInput, emailInput, typeSelect, messageInput, companyInput].forEach((input) => {
