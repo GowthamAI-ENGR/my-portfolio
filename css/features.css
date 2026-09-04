@@ -770,43 +770,7 @@
   }
 }
 
-/* ========================================
-   PROJECT CAROUSEL (Mobile swipe)
-   ======================================== */
 
-@media (max-width: 768px) {
-  .projects-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 16px;
-    padding: 4px 24px 28px;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .projects-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .projects-grid .project-card {
-    flex: 0 0 calc(100vw - 64px);
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    max-width: none;
-    margin: 0;
-  }
-
-  .project-buttons {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .project-buttons .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
 
 /* ========================================
    FOCUS VISIBILITY (Accessibility)
