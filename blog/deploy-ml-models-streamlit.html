@@ -124,10 +124,10 @@
     <article class="article-body">
       <h2>Why Deploy ML Models?</h2>
       <p>
-        Training a machine learning model is only half the battle. The real value emerges when non-technical stakeholders, researchers, or end users can interact with your model through a clean interface — without writing a single line of Python. Deployment bridges the gap between a Jupyter notebook and a usable application.
+        Training a machine learning model is only half the battle. The real value emerges when non-technical stakeholders, researchers, or end users can interact with your model through a clean interface - without writing a single line of Python. Deployment bridges the gap between a Jupyter notebook and a usable application.
       </p>
       <p>
-        Among the many deployment options available — Flask APIs, FastAPI services, Docker containers, cloud functions — Streamlit stands out for its speed of development and accessibility. It lets you turn a Python script into an interactive web application in minutes, making it ideal for ML prototypes, data dashboards, and portfolio projects.
+        Among the many deployment options available - Flask APIs, FastAPI services, Docker containers, cloud functions - Streamlit stands out for its speed of development and accessibility. It lets you turn a Python script into an interactive web application in minutes, making it ideal for ML prototypes, data dashboards, and portfolio projects.
       </p>
 
       <h2>What is Streamlit?</h2>
@@ -136,7 +136,7 @@
       </p>
       <p>Key characteristics:</p>
       <ul>
-        <li>Pure Python — no frontend code required</li>
+        <li>Pure Python - no frontend code required</li>
         <li>Automatic re-rendering on file changes</li>
         <li>Built-in widgets for sliders, dropdowns, file uploads, and more</li>
         <li>Native support for pandas DataFrames, matplotlib plots, and model predictions</li>
@@ -218,11 +218,11 @@ st.dataframe(pd.DataFrame({
 
       <h2>Best Practices</h2>
       <ul>
-        <li><strong>Cache expensive operations</strong> — Use <code>@st.cache_data</code> or <code>@st.cache_resource</code> to avoid reloading models on every interaction</li>
-        <li><strong>Keep requirements minimal</strong> — Only include packages actually used in your application</li>
-        <li><strong>Handle errors gracefully</strong> — Validate user inputs and provide clear error messages</li>
-        <li><strong>Optimize model loading</strong> — Load models once at startup, not on every rerun</li>
-        <li><strong>Use session state</strong> — Maintain user-specific data across interactions with <code>st.session_state</code></li>
+        <li><strong>Cache expensive operations</strong> - Use <code>@st.cache_data</code> or <code>@st.cache_resource</code> to avoid reloading models on every interaction</li>
+        <li><strong>Keep requirements minimal</strong> - Only include packages actually used in your application</li>
+        <li><strong>Handle errors gracefully</strong> - Validate user inputs and provide clear error messages</li>
+        <li><strong>Optimize model loading</strong> - Load models once at startup, not on every rerun</li>
+        <li><strong>Use session state</strong> - Maintain user-specific data across interactions with <code>st.session_state</code></li>
       </ul>
 
       <h2>Real-World Example</h2>
@@ -230,9 +230,9 @@ st.dataframe(pd.DataFrame({
         I've deployed three ML applications using this exact approach:
       </p>
       <ul>
-        <li><a href="https://pregnancyriskprediction-1222.streamlit.app/" target="_blank" rel="noopener">Maternal Health Risk Prediction</a> — Healthcare risk classification using scikit-learn</li>
-        <li><a href="https://crop-recommendation-system-2222.streamlit.app/" target="_blank" rel="noopener">Crop Recommendation System</a> — Agricultural intelligence using Random Forest</li>
-        <li><a href="https://movierecommendationsystem-govi.streamlit.app/" target="_blank" rel="noopener">Movie Recommendation System</a> — Personalized recommendations using collaborative filtering</li>
+        <li><a href="https://pregnancyriskprediction-1222.streamlit.app/" target="_blank" rel="noopener">Maternal Health Risk Prediction</a> - Healthcare risk classification using scikit-learn</li>
+        <li><a href="https://crop-recommendation-system-2222.streamlit.app/" target="_blank" rel="noopener">Crop Recommendation System</a> - Agricultural intelligence using Random Forest</li>
+        <li><a href="https://movierecommendationsystem-govi.streamlit.app/" target="_blank" rel="noopener">Movie Recommendation System</a> - Personalized recommendations using collaborative filtering</li>
       </ul>
       <p>
         Each project follows the same pattern: train a model in Python, serialize it, build a Streamlit interface, and deploy to the cloud.
@@ -253,7 +253,7 @@ st.dataframe(pd.DataFrame({
 
       <h2>Conclusion</h2>
       <p>
-        Streamlit democratizes ML deployment. It removes the frontend barrier, letting data scientists and ML engineers focus on what they do best — building models — while still delivering interactive, shareable applications. For portfolio projects, academic prototypes, and internal tools, it remains one of the fastest paths from model to deployment.
+        Streamlit democratizes ML deployment. It removes the frontend barrier, letting data scientists and ML engineers focus on what they do best - building models - while still delivering interactive, shareable applications. For portfolio projects, academic prototypes, and internal tools, it remains one of the fastest paths from model to deployment.
       </p>
 
       <div class="article-nav">

@@ -124,7 +124,7 @@
     <article class="article-body">
       <h2>What Are Neural Networks?</h2>
       <p>
-        Neural networks are computational models inspired by the human brain. They consist of layers of interconnected nodes (neurons) that process information and learn patterns from data. Unlike traditional algorithms that follow explicit rules, neural networks learn by example — they adjust their internal parameters during training to minimize prediction errors.
+        Neural networks are computational models inspired by the human brain. They consist of layers of interconnected nodes (neurons) that process information and learn patterns from data. Unlike traditional algorithms that follow explicit rules, neural networks learn by example - they adjust their internal parameters during training to minimize prediction errors.
       </p>
       <p>
         The core idea is simple: given input data, a neural network transforms it through multiple layers of mathematical operations, progressively extracting higher-level features. A network trained on images might learn edges in early layers, shapes in middle layers, and object parts in deeper layers.
@@ -132,11 +132,11 @@
 
       <h2>The Perceptron</h2>
       <p>
-        The basic building block is the perceptron — a single neuron that computes a weighted sum of its inputs, adds a bias, and passes the result through an activation function:
+        The basic building block is the perceptron - a single neuron that computes a weighted sum of its inputs, adds a bias, and passes the result through an activation function:
       </p>
       <pre><code>output = activation(w1*x1 + w2*x2 + ... + wn*xn + bias)</code></pre>
       <p>
-        A single perceptron can only learn linearly separable patterns (like AND, OR gates). The real power comes from stacking perceptrons into layers and connecting multiple layers together — this is where deep learning begins.
+        A single perceptron can only learn linearly separable patterns (like AND, OR gates). The real power comes from stacking perceptrons into layers and connecting multiple layers together - this is where deep learning begins.
       </p>
 
       <h2>Activation Functions</h2>
@@ -145,10 +145,10 @@
       </p>
       <h3>Common Activation Functions</h3>
       <ul>
-        <li><strong>ReLU (Rectified Linear Unit)</strong> — <code>f(x) = max(0, x)</code>. The default choice for hidden layers. Simple, computationally efficient, and avoids the vanishing gradient problem for positive values.</li>
-        <li><strong>Sigmoid</strong> — <code>f(x) = 1 / (1 + e^-x)</code>. Outputs values between 0 and 1. Useful for binary classification output layers but prone to vanishing gradients in deep networks.</li>
-        <li><strong>Softmax</strong> — Converts raw scores into probabilities that sum to 1. Used in the output layer for multi-class classification.</li>
-        <li><strong>Tanh</strong> — <code>f(x) = (e^x - e^-x) / (e^x + e^-x)</code>. Outputs values between -1 and 1. Centered around zero, which can help with training dynamics.</li>
+        <li><strong>ReLU (Rectified Linear Unit)</strong> - <code>f(x) = max(0, x)</code>. The default choice for hidden layers. Simple, computationally efficient, and avoids the vanishing gradient problem for positive values.</li>
+        <li><strong>Sigmoid</strong> - <code>f(x) = 1 / (1 + e^-x)</code>. Outputs values between 0 and 1. Useful for binary classification output layers but prone to vanishing gradients in deep networks.</li>
+        <li><strong>Softmax</strong> - Converts raw scores into probabilities that sum to 1. Used in the output layer for multi-class classification.</li>
+        <li><strong>Tanh</strong> - <code>f(x) = (e^x - e^-x) / (e^x + e^-x)</code>. Outputs values between -1 and 1. Centered around zero, which can help with training dynamics.</li>
       </ul>
 
       <h2>How Neural Networks Learn</h2>
@@ -156,12 +156,12 @@
         Training a neural network involves three key steps:
       </p>
       <ol>
-        <li><strong>Forward pass</strong> — Input data flows through the network, producing a prediction</li>
-        <li><strong>Loss calculation</strong> — A loss function measures how far the prediction is from the true label</li>
-        <li><strong>Backward pass (backpropagation)</strong> — Gradients of the loss with respect to each weight are computed, and weights are updated to reduce the loss</li>
+        <li><strong>Forward pass</strong> - Input data flows through the network, producing a prediction</li>
+        <li><strong>Loss calculation</strong> - A loss function measures how far the prediction is from the true label</li>
+        <li><strong>Backward pass (backpropagation)</strong> - Gradients of the loss with respect to each weight are computed, and weights are updated to reduce the loss</li>
       </ol>
       <p>
-        This cycle repeats for many iterations (epochs) until the model converges. The optimizer — typically Adam or SGD — determines how weights are updated based on the computed gradients.
+        This cycle repeats for many iterations (epochs) until the model converges. The optimizer - typically Adam or SGD - determines how weights are updated based on the computed gradients.
       </p>
       <pre><code># The training loop in pseudocode
 for epoch in range(num_epochs):
@@ -210,11 +210,11 @@ model.summary()</code></pre>
         This architecture has:
       </p>
       <ul>
-        <li><strong>Input layer</strong> — 784 neurons (one per pixel)</li>
-        <li><strong>Hidden layer 1</strong> — 256 neurons with ReLU activation</li>
-        <li><strong>Dropout</strong> — Randomly deactivates 30% of neurons during training to prevent overfitting</li>
-        <li><strong>Hidden layer 2</strong> — 128 neurons with ReLU activation</li>
-        <li><strong>Output layer</strong> — 10 neurons with softmax (one per digit class)</li>
+        <li><strong>Input layer</strong> - 784 neurons (one per pixel)</li>
+        <li><strong>Hidden layer 1</strong> - 256 neurons with ReLU activation</li>
+        <li><strong>Dropout</strong> - Randomly deactivates 30% of neurons during training to prevent overfitting</li>
+        <li><strong>Hidden layer 2</strong> - 128 neurons with ReLU activation</li>
+        <li><strong>Output layer</strong> - 10 neurons with softmax (one per digit class)</li>
       </ul>
 
       <h3>Step 3: Compile and Train</h3>
@@ -232,7 +232,7 @@ history = model.fit(
     verbose=1
 )</code></pre>
       <p>
-        <strong>Adam</strong> is the go-to optimizer for most problems — it adapts learning rates per parameter and converges faster than basic SGD. <strong>Categorical crossentropy</strong> is the standard loss function for multi-class classification.
+        <strong>Adam</strong> is the go-to optimizer for most problems - it adapts learning rates per parameter and converges faster than basic SGD. <strong>Categorical crossentropy</strong> is the standard loss function for multi-class classification.
       </p>
 
       <h3>Step 4: Evaluate</h3>
@@ -248,10 +248,10 @@ print(f"Test accuracy: {test_accuracy:.4f}")</code></pre>
         Overfitting occurs when a model memorizes training data instead of learning generalizable patterns. Common regularization techniques include:
       </p>
       <ul>
-        <li><strong>Dropout</strong> — Randomly deactivates neurons during training</li>
-        <li><strong>Early stopping</strong> — Stop training when validation loss stops improving</li>
-        <li><strong>L2 regularization</strong> — Penalizes large weights</li>
-        <li><strong>Data augmentation</strong> — Artificially increase training data variety</li>
+        <li><strong>Dropout</strong> - Randomly deactivates neurons during training</li>
+        <li><strong>Early stopping</strong> - Stop training when validation loss stops improving</li>
+        <li><strong>L2 regularization</strong> - Penalizes large weights</li>
+        <li><strong>Data augmentation</strong> - Artificially increase training data variety</li>
       </ul>
 
       <h3>Learning Rate</h3>
@@ -266,7 +266,7 @@ print(f"Test accuracy: {test_accuracy:.4f}")</code></pre>
 
       <h2>When to Use Neural Networks</h2>
       <p>
-        Neural networks excel at tasks involving unstructured data — images, text, audio, time series. They're the right choice when:
+        Neural networks excel at tasks involving unstructured data - images, text, audio, time series. They're the right choice when:
       </p>
       <ul>
         <li>You have large amounts of training data (thousands to millions of samples)</li>
@@ -283,15 +283,15 @@ print(f"Test accuracy: {test_accuracy:.4f}")</code></pre>
         Once you're comfortable with dense networks, explore these areas:
       </p>
       <ul>
-        <li><strong>Convolutional Neural Networks (CNNs)</strong> — Specialized for image data</li>
-        <li><strong>Recurrent Neural Networks (RNNs/LSTMs)</strong> — For sequential data like text and time series</li>
-        <li><strong>Transfer Learning</strong> — Use pre-trained models (like BERT or ResNet) for your specific task</li>
-        <li><strong>TensorFlow Lite</strong> — Deploy models to mobile and edge devices</li>
+        <li><strong>Convolutional Neural Networks (CNNs)</strong> - Specialized for image data</li>
+        <li><strong>Recurrent Neural Networks (RNNs/LSTMs)</strong> - For sequential data like text and time series</li>
+        <li><strong>Transfer Learning</strong> - Use pre-trained models (like BERT or ResNet) for your specific task</li>
+        <li><strong>TensorFlow Lite</strong> - Deploy models to mobile and edge devices</li>
       </ul>
 
       <h2>Conclusion</h2>
       <p>
-        Neural networks are powerful function approximators that learn patterns directly from data. TensorFlow and Keras make them accessible — you can build, train, and evaluate a working model in under 50 lines of code. Start with simple architectures, understand the fundamentals, and progressively tackle more complex problems as your intuition develops.
+        Neural networks are powerful function approximators that learn patterns directly from data. TensorFlow and Keras make them accessible - you can build, train, and evaluate a working model in under 50 lines of code. Start with simple architectures, understand the fundamentals, and progressively tackle more complex problems as your intuition develops.
       </p>
 
       <div class="article-nav">

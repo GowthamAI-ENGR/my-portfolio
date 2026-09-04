@@ -1,5 +1,5 @@
 /* ========================================
-   THEME CONTROLS — Dark / Light / System
+   THEME CONTROLS - Dark / Light / System
    ======================================== */
 
 (function () {

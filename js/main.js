@@ -1,5 +1,5 @@
 /* ========================================
-   GOWTHAM RAVI — AI/ML PORTFOLIO
+   GOWTHAM RAVI - AI/ML PORTFOLIO
    Main JavaScript
    ======================================== */
 
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animateParticles();
 
   // ========================================
-  // NAVBAR — Scroll Effect
+  // NAVBAR - Scroll Effect
   // ========================================
 
   const navbar = document.getElementById('navbar');
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================
-  // GALLERY — Image Fallback
+  // GALLERY - Image Fallback
   // ========================================
 
   document.querySelectorAll('.gallery-img').forEach(img => {
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================
-  // GITHUB — Live Stats
+  // GITHUB - Live Stats
   // ========================================
 
   const GITHUB_USERNAME = 'GowthamAI-ENGR';

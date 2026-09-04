@@ -1,5 +1,5 @@
 /* ========================================
-   MOBILE EXPERIENCE — Bottom Nav + Active states
+   MOBILE EXPERIENCE - Bottom Nav + Active states
    ======================================== */
 
 (function () {

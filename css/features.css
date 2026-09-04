@@ -1,5 +1,5 @@
 /* ========================================
-   GOWTHAM RAVI — PORTFOLIO FEATURES
+   GOWTHAM RAVI - PORTFOLIO FEATURES
    Theme Toggle · Resume Viewer · Contact Form
    AI Assistant · Mobile Nav · Micro Animations
    ======================================== */
@@ -776,25 +776,35 @@
 
 @media (max-width: 768px) {
   .projects-grid {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 85%;
-    grid-template-columns: none;
-    grid-template-rows: auto;
-    gap: 16px;
+    display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 4px 4px 20px;
-    scrollbar-width: thin;
+    gap: 16px;
+    padding: 4px 24px 28px;
+    scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
 
+  .projects-grid::-webkit-scrollbar {
+    display: none;
+  }
+
   .projects-grid .project-card {
+    flex: 0 0 calc(100vw - 64px);
     scroll-snap-align: center;
     scroll-snap-stop: always;
-    grid-column: auto !important;
-    max-width: none !important;
-    margin: 0 !important;
+    max-width: none;
+    margin: 0;
+  }
+
+  .project-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-buttons .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

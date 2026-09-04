@@ -1,5 +1,5 @@
 /* ========================================
-   AI PORTFOLIO ASSISTANT — Rule-based Q&A
+   AI PORTFOLIO ASSISTANT - Rule-based Q&A
    Answers from Gowtham's portfolio data.
    ======================================== */
 
@@ -48,20 +48,20 @@
         description: 'A machine-learning application that helps users discover movies based on their preferences and viewing patterns.'
       }
     ],
-    experience: 'Full Stack Web Developer Intern at HodoLabs (2026) — feature development, API integration, database & CRUD operations, debugging & testing, responsive UI design, and deployment.',
+    experience: 'Full Stack Web Developer Intern at HodoLabs (2026) - feature development, API integration, database & CRUD operations, debugging & testing, responsive UI design, and deployment.',
     education: [
-      'M.Sc. Artificial Intelligence, St. Joseph\'s College (Autonomous), Trichy — expected 2027',
-      'B.Sc. Computer Science, Srimad Andavan Arts & Science College — 2022 to 2025'
+      'M.Sc. Artificial Intelligence, St. Joseph\'s College (Autonomous), Trichy - expected 2027',
+      'B.Sc. Computer Science, Srimad Andavan Arts & Science College - 2022 to 2025'
     ],
     certifications: [
-      'Mastering Statistics using R — Great Learning',
-      'AI/ML for Geodata Analysis — Professional Course',
-      'Introduction to Neural Networks & Learning — ISRO',
-      'Introduction to Deep Learning — NPTEL',
-      'ChatGPT for Beginners — Great Learning',
-      'Exploring Earth\'s Moon through Chandrayaan — ISRO',
-      'Basics of Exploratory Data Analysis — Professional Course',
-      'Online Courses — Great Learning / NPTEL'
+      'Mastering Statistics using R - Great Learning',
+      'AI/ML for Geodata Analysis - Professional Course',
+      'Introduction to Neural Networks & Learning - ISRO',
+      'Introduction to Deep Learning - NPTEL',
+      'ChatGPT for Beginners - Great Learning',
+      'Exploring Earth\'s Moon through Chandrayaan - ISRO',
+      'Basics of Exploratory Data Analysis - Professional Course',
+      'Online Courses - Great Learning / NPTEL'
     ],
     location: 'Trichy, Tamil Nadu, India'
   };
@@ -95,9 +95,9 @@
     // Projects overview
     if (includesAny(raw, ['projects', 'built', 'build', 'portfolio work', 'playground', 'showcase'])) {
       return 'Gowtham has built 3 featured ML projects:\n\n' +
-        '1. Maternal Health Risk Prediction — ML healthcare app predicting pregnancy-related risk levels (Python, scikit-learn, Streamlit).\n' +
-        '2. Crop Recommendation System — recommends crops from soil & climate data (Python, Random Forest, Streamlit).\n' +
-        '3. Movie Recommendation System — helps users discover movies from viewing patterns (Python, ML, Streamlit).\n\n' +
+        '1. Maternal Health Risk Prediction - ML healthcare app predicting pregnancy-related risk levels (Python, scikit-learn, Streamlit).\n' +
+        '2. Crop Recommendation System - recommends crops from soil & climate data (Python, Random Forest, Streamlit).\n' +
+        '3. Movie Recommendation System - helps users discover movies from viewing patterns (Python, ML, Streamlit).\n\n' +
         'Ask me about any of them for more detail!';
     }
 
@@ -108,7 +108,7 @@
 
     // Crop project
     if (includesAny(raw, ['crop', 'agriculture', 'soil']) && !includesAny(raw, ['project', 'portfolio'])) {
-      return 'The Crop Recommendation System analyzes soil and environmental conditions — N, P, K, temperature, humidity, pH, and rainfall — to recommend the most suitable crops. It uses Python, Random Forest, and Decision Trees on a Streamlit dashboard.';
+      return 'The Crop Recommendation System analyzes soil and environmental conditions - N, P, K, temperature, humidity, pH, and rainfall - to recommend the most suitable crops. It uses Python, Random Forest, and Decision Trees on a Streamlit dashboard.';
     }
 
     // Movie project
@@ -136,8 +136,8 @@
     // Education
     if (includesAny(raw, ['education', 'study', 'studied', 'degree', 'college', 'university', 'master', 'bachelor', 'academic'])) {
       return "Education:\n" +
-        "• M.Sc. Artificial Intelligence — St. Joseph's College (Autonomous), Trichy (expected 2027)\n" +
-        '• B.Sc. Computer Science — Srimad Andavan Arts & Science College (2022-2025)';
+        "• M.Sc. Artificial Intelligence - St. Joseph's College (Autonomous), Trichy (expected 2027)\n" +
+        '• B.Sc. Computer Science - Srimad Andavan Arts & Science College (2022-2025)';
     }
 
     // Certifications
@@ -164,7 +164,7 @@
         'Email: gowtham120205@gmail.com\n' +
         'GitHub: github.com/GowthamAI-ENGR\n' +
         'LinkedIn: linkedin.com/in/gowtham-ravi-12ph27b2532a6\n\n' +
-        'There is also a contact form in the Get In Touch section — feel free to send a message.';
+        'There is also a contact form in the Get In Touch section - feel free to send a message.';
     }
 
     // Resume

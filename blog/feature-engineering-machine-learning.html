@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feature Engineering for Machine Learning: A Practical Guide | Gowtham Ravi</title>
-  <meta name="description" content="A practical guide to feature engineering for machine learning — encoding categorical variables, scaling, feature selection, and real-world techniques that improve model performance.">
+  <meta name="description" content="A practical guide to feature engineering for machine learning - encoding categorical variables, scaling, feature selection, and real-world techniques that improve model performance.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://gowthamai-engr.github.io/my-portfolio/blog/feature-engineering-machine-learning.html">
   <meta property="og:title" content="Feature Engineering for Machine Learning: A Practical Guide">
-  <meta property="og:description" content="A practical guide to feature engineering for machine learning — encoding, scaling, selection, and real-world techniques.">
+  <meta property="og:description" content="A practical guide to feature engineering for machine learning - encoding, scaling, selection, and real-world techniques.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://gowthamai-engr.github.io/my-portfolio/blog/feature-engineering-machine-learning.html">
   <meta property="og:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
@@ -20,14 +20,14 @@
   <meta property="article:tag" content="Python">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Feature Engineering for Machine Learning: A Practical Guide">
-  <meta name="twitter:description" content="A practical guide to feature engineering for machine learning — encoding, scaling, selection, and real-world techniques.">
+  <meta name="twitter:description" content="A practical guide to feature engineering for machine learning - encoding, scaling, selection, and real-world techniques.">
   <meta name="twitter:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Feature Engineering for Machine Learning: A Practical Guide",
-    "description": "A practical guide to feature engineering for machine learning — encoding categorical variables, scaling, feature selection, and real-world techniques that improve model performance.",
+    "description": "A practical guide to feature engineering for machine learning - encoding categorical variables, scaling, feature selection, and real-world techniques that improve model performance.",
     "datePublished": "2026-09-04",
     "author": {
       "@type": "Person",
@@ -124,7 +124,7 @@
     <article class="article-body">
       <h2>Why Feature Engineering Matters</h2>
       <p>
-        Feature engineering is the process of using domain knowledge to transform raw data into features that better represent the underlying problem to machine learning models. It is often the single most impactful step in an ML pipeline — good features can outperform a more complex model with poor features.
+        Feature engineering is the process of using domain knowledge to transform raw data into features that better represent the underlying problem to machine learning models. It is often the single most impactful step in an ML pipeline - good features can outperform a more complex model with poor features.
       </p>
       <p>
         As Andrew Ng put it: "Applied ML is basically feature engineering." While that's a simplification, the sentiment is accurate: the quality of your features directly determines the ceiling of your model's performance.
@@ -163,7 +163,7 @@ df_knn = pd.DataFrame(
 
       <h2>Encoding Categorical Variables</h2>
       <p>
-        Machine learning models require numerical input. Categorical variables — like city names, product categories, or color labels — must be converted to numbers.
+        Machine learning models require numerical input. Categorical variables - like city names, product categories, or color labels - must be converted to numbers.
       </p>
 
       <h3>Label Encoding</h3>
@@ -242,7 +242,7 @@ from sklearn.preprocessing import PolynomialFeatures
 poly = PolynomialFeatures(degree=2, interaction_only=True)
 X_poly = poly.fit_transform(X)</code></pre>
       <p>
-        In my <a href="crop-recommendation-python.html">crop recommendation system</a>, the raw soil parameters (N, P, K, temperature, humidity, pH, rainfall) are sufficient because they directly correspond to known agricultural factors. But in other domains — like housing prices or customer churn — interaction and ratio features often provide significant lifts.
+        In my <a href="crop-recommendation-python.html">crop recommendation system</a>, the raw soil parameters (N, P, K, temperature, humidity, pH, rainfall) are sufficient because they directly correspond to known agricultural factors. But in other domains - like housing prices or customer churn - interaction and ratio features often provide significant lifts.
       </p>
 
       <h2>Feature Selection</h2>
@@ -330,21 +330,21 @@ full_pipeline.fit(X_train, y_train)
 score = full_pipeline.score(X_test, y_test)
 print(f"Accuracy: {score:.4f}")</code></pre>
       <p>
-        The pipeline approach prevents data leakage — scalers and encoders are fit only on training data and applied to test data, mimicking real-world inference conditions.
+        The pipeline approach prevents data leakage - scalers and encoders are fit only on training data and applied to test data, mimicking real-world inference conditions.
       </p>
 
       <h2>Common Mistakes</h2>
       <ul>
-        <li><strong>Fitting on test data</strong> — Always split data first, then fit transformers on training data only</li>
-        <li><strong>Ignoring feature distributions</strong> — Check for skewness; log transforms can help with heavily skewed features</li>
-        <li><strong>Over-engineering</strong> — Start simple; add complexity only when metrics improve</li>
-        <li><strong>Ignoring domain knowledge</strong> — Talk to subject matter experts; they know which features actually matter</li>
-        <li><strong>Not validating changes</strong> — Always measure the impact of feature engineering on model performance using cross-validation</li>
+        <li><strong>Fitting on test data</strong> - Always split data first, then fit transformers on training data only</li>
+        <li><strong>Ignoring feature distributions</strong> - Check for skewness; log transforms can help with heavily skewed features</li>
+        <li><strong>Over-engineering</strong> - Start simple; add complexity only when metrics improve</li>
+        <li><strong>Ignoring domain knowledge</strong> - Talk to subject matter experts; they know which features actually matter</li>
+        <li><strong>Not validating changes</strong> - Always measure the impact of feature engineering on model performance using cross-validation</li>
       </ul>
 
       <h2>Conclusion</h2>
       <p>
-        Feature engineering is part art, part science. The techniques in this guide — handling missing values, encoding categoricals, scaling, creating interaction features, and selecting the most relevant features — form the foundation of any ML pipeline. Combined with <a href="decision-tree-vs-random-forest.html">strong model selection</a> and proper <a href="deploy-ml-models-streamlit.html">deployment practices</a>, good feature engineering separates working ML projects from impressive ones.
+        Feature engineering is part art, part science. The techniques in this guide - handling missing values, encoding categoricals, scaling, creating interaction features, and selecting the most relevant features - form the foundation of any ML pipeline. Combined with <a href="decision-tree-vs-random-forest.html">strong model selection</a> and proper <a href="deploy-ml-models-streamlit.html">deployment practices</a>, good feature engineering separates working ML projects from impressive ones.
       </p>
 
       <div class="article-nav">

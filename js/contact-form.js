@@ -1,5 +1,5 @@
 /* ========================================
-   CONTACT FORM — Validation + Formspree
+   CONTACT FORM - Validation + Formspree
    ======================================== */
 
 (function () {

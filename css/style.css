@@ -1,5 +1,5 @@
 /* ========================================
-   GOWTHAM RAVI — AI/ML PORTFOLIO
+   GOWTHAM RAVI - AI/ML PORTFOLIO
    Color System & Variables
    ======================================== */
 
@@ -754,7 +754,7 @@ ul {
 }
 
 /* ========================================
-   EXPERIENCE — TIMELINE
+   EXPERIENCE - TIMELINE
    ======================================== */
 
 .timeline {
@@ -867,7 +867,7 @@ ul {
 }
 
 /* ========================================
-   EDUCATION — VERTICAL TIMELINE
+   EDUCATION - VERTICAL TIMELINE
    ======================================== */
 
 .edu-timeline {
@@ -947,7 +947,7 @@ ul {
 }
 
 /* ========================================
-   CERTIFICATIONS — CARD GRID
+   CERTIFICATIONS - CARD GRID
    ======================================== */
 
 .cert-grid {
@@ -1001,7 +1001,7 @@ ul {
 }
 
 /* ========================================
-   BEYOND AI — PHOTO GALLERY
+   BEYOND AI - PHOTO GALLERY
    ======================================== */
 
 .gallery-grid {
@@ -1097,7 +1097,7 @@ ul {
 }
 
 /* ========================================
-   GITHUB — STATS CARD
+   GITHUB - STATS CARD
    ======================================== */
 
 .github-card {
@@ -1376,10 +1376,19 @@ ul {
 }
 
 /* ========================================
-   RESPONSIVE — TABLET (max-width: 1024px)
+   RESPONSIVE - TABLET (max-width: 1024px)
    ======================================== */
 
 @media (max-width: 1024px) {
+  .nav-link {
+    font-size: 0.82rem;
+    padding: 6px 10px;
+  }
+
+  .hero-buttons .btn:nth-child(n+4) {
+    display: none;
+  }
+
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1401,21 +1410,6 @@ ul {
   .blog-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-/* ========================================
-   RESPONSIVE — TABLET (max-width: 1024px)
-   ======================================== */
-
-@media (max-width: 1024px) {
-  .nav-link {
-    font-size: 0.82rem;
-    padding: 6px 10px;
-  }
-
-  .hero-buttons .btn:nth-child(n+4) {
-    display: none;
-  }
 
   .contact-grid {
     grid-template-columns: 1fr;
@@ -1425,7 +1419,7 @@ ul {
 }
 
 /* ========================================
-   RESPONSIVE — MOBILE (max-width: 768px)
+   RESPONSIVE - MOBILE (max-width: 768px)
    ======================================== */
 
 @media (max-width: 768px) {
@@ -1527,7 +1521,7 @@ ul {
 }
 
 /* ========================================
-   RESPONSIVE — SMALL MOBILE (max-width: 480px)
+   RESPONSIVE - SMALL MOBILE (max-width: 480px)
    ======================================== */
 
 @media (max-width: 480px) {

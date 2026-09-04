@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decision Tree vs Random Forest for Classification | Gowtham Ravi</title>
-  <meta name="description" content="An in-depth comparison of Decision Trees and Random Forests for classification tasks — when to use each, how they differ, and practical implementation with scikit-learn.">
+  <meta name="description" content="An in-depth comparison of Decision Trees and Random Forests for classification tasks - when to use each, how they differ, and practical implementation with scikit-learn.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://gowthamai-engr.github.io/my-portfolio/blog/decision-tree-vs-random-forest.html">
   <meta property="og:title" content="Decision Tree vs Random Forest for Classification">
-  <meta property="og:description" content="An in-depth comparison of Decision Trees and Random Forests for classification — when to use each and how they differ.">
+  <meta property="og:description" content="An in-depth comparison of Decision Trees and Random Forests for classification - when to use each and how they differ.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://gowthamai-engr.github.io/my-portfolio/blog/decision-tree-vs-random-forest.html">
   <meta property="og:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
@@ -28,7 +28,7 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Decision Tree vs Random Forest for Classification",
-    "description": "An in-depth comparison of Decision Trees and Random Forests for classification tasks — when to use each, how they differ, and practical implementation with scikit-learn.",
+    "description": "An in-depth comparison of Decision Trees and Random Forests for classification tasks - when to use each, how they differ, and practical implementation with scikit-learn.",
     "datePublished": "2026-09-04",
     "author": {
       "@type": "Person",
@@ -126,7 +126,7 @@
     <article class="article-body">
       <h2>Introduction</h2>
       <p>
-        Decision Trees and Random Forests are among the most widely used algorithms for classification tasks in machine learning. While a Decision Tree forms the conceptual foundation, Random Forest extends it into an ensemble method that addresses many of its predecessor's weaknesses. Understanding when to use each — and why — is fundamental to building effective ML systems.
+        Decision Trees and Random Forests are among the most widely used algorithms for classification tasks in machine learning. While a Decision Tree forms the conceptual foundation, Random Forest extends it into an ensemble method that addresses many of its predecessor's weaknesses. Understanding when to use each - and why - is fundamental to building effective ML systems.
       </p>
 
       <h2>How Decision Trees Work</h2>
@@ -153,18 +153,18 @@ tree.fit(X_train, y_train)</code></pre>
       <h2>Strengths and Weaknesses of Decision Trees</h2>
       <h3>Strengths</h3>
       <ul>
-        <li><strong>Interpretability</strong> — The tree structure can be visualized and understood by non-technical stakeholders</li>
-        <li><strong>No feature scaling needed</strong> — Trees are invariant to feature magnitudes</li>
-        <li><strong>Handles mixed data types</strong> — Works with both numerical and categorical features</li>
-        <li><strong>Fast training and inference</strong> — Computationally efficient for small to medium datasets</li>
-        <li><strong>Feature importance</strong> — Provides built-in feature importance rankings</li>
+        <li><strong>Interpretability</strong> - The tree structure can be visualized and understood by non-technical stakeholders</li>
+        <li><strong>No feature scaling needed</strong> - Trees are invariant to feature magnitudes</li>
+        <li><strong>Handles mixed data types</strong> - Works with both numerical and categorical features</li>
+        <li><strong>Fast training and inference</strong> - Computationally efficient for small to medium datasets</li>
+        <li><strong>Feature importance</strong> - Provides built-in feature importance rankings</li>
       </ul>
       <h3>Weaknesses</h3>
       <ul>
-        <li><strong>Overfitting</strong> — Deep trees memorize training data noise, especially with small datasets</li>
-        <li><strong>High variance</strong> — Small changes in data can produce entirely different tree structures</li>
-        <li><strong>Greedy optimization</strong> — Locally optimal splits don't guarantee a globally optimal tree</li>
-        <li><strong>Axis-aligned splits</strong> — Limited to rectangular decision boundaries</li>
+        <li><strong>Overfitting</strong> - Deep trees memorize training data noise, especially with small datasets</li>
+        <li><strong>High variance</strong> - Small changes in data can produce entirely different tree structures</li>
+        <li><strong>Greedy optimization</strong> - Locally optimal splits don't guarantee a globally optimal tree</li>
+        <li><strong>Axis-aligned splits</strong> - Limited to rectangular decision boundaries</li>
       </ul>
 
       <h2>How Random Forests Work</h2>
@@ -173,9 +173,9 @@ tree.fit(X_train, y_train)</code></pre>
       </p>
       <p>The key innovations are:</p>
       <ul>
-        <li><strong>Bagging (Bootstrap Aggregating)</strong> — Each tree is trained on a random sample drawn with replacement from the original dataset</li>
-        <li><strong>Random Feature Selection</strong> — At each split, only a random subset of features is considered, decorrelating the trees</li>
-        <li><strong>Majority Voting</strong> — Final predictions are determined by the majority class across all trees</li>
+        <li><strong>Bagging (Bootstrap Aggregating)</strong> - Each tree is trained on a random sample drawn with replacement from the original dataset</li>
+        <li><strong>Random Feature Selection</strong> - At each split, only a random subset of features is considered, decorrelating the trees</li>
+        <li><strong>Majority Voting</strong> - Final predictions are determined by the majority class across all trees</li>
       </ul>
       <pre><code>from sklearn.ensemble import RandomForestClassifier
 
@@ -199,13 +199,13 @@ forest.fit(X_train, y_train)</code></pre>
         <tbody>
           <tr>
             <td>Interpretability</td>
-            <td>High — visual tree structure</td>
-            <td>Low — ensemble of many trees</td>
+            <td>High - visual tree structure</td>
+            <td>Low - ensemble of many trees</td>
           </tr>
           <tr>
             <td>Overfitting Risk</td>
-            <td>High — prone to memorizing noise</td>
-            <td>Low — averaging reduces variance</td>
+            <td>High - prone to memorizing noise</td>
+            <td>Low - averaging reduces variance</td>
           </tr>
           <tr>
             <td>Training Speed</td>
@@ -285,7 +285,7 @@ print(f"Random Forest Accuracy: {rf_scores.mean():.4f}")</code></pre>
         In my <a href="../#projects">Crop Recommendation System</a>, I use both Random Forest and Decision Trees for crop classification. The system takes soil parameters (nitrogen, phosphorus, potassium, temperature, humidity, pH, rainfall) and recommends the most suitable crop. Random Forest provides the production prediction, while individual Decision Trees offer interpretability for understanding which soil factors drive specific crop recommendations.
       </p>
       <p>
-        This dual approach — using ensemble methods for accuracy and single trees for explainability — is a practical pattern worth considering in real-world ML applications.
+        This dual approach - using ensemble methods for accuracy and single trees for explainability - is a practical pattern worth considering in real-world ML applications.
       </p>
 
       <h2>Conclusion</h2>

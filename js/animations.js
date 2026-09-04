@@ -1,5 +1,5 @@
 /* ========================================
-   MICRO ANIMATIONS — Hero Reveal · Magnetic
+   MICRO ANIMATIONS - Hero Reveal · Magnetic
    Buttons · Number Counters · Cursor Glow
    ======================================== */
 

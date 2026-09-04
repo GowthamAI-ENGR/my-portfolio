@@ -1,5 +1,5 @@
 /* ========================================
-   SMART RESUME VIEWER — Modal, Zoom, Print
+   SMART RESUME VIEWER - Modal, Zoom, Print
    ======================================== */
 
 (function () {
