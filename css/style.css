@@ -1404,6 +1404,27 @@ ul {
 }
 
 /* ========================================
+   RESPONSIVE — TABLET (max-width: 1024px)
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .nav-link {
+    font-size: 0.82rem;
+    padding: 6px 10px;
+  }
+
+  .hero-buttons .btn:nth-child(n+4) {
+    display: none;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/* ========================================
    RESPONSIVE — MOBILE (max-width: 768px)
    ======================================== */
 
@@ -1532,30 +1553,3 @@ ul {
   }
 }
 
-/* ========================================
-   REDUCED MOTION
-   ======================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .hero-canvas {
-    display: none;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
-
-  .cursor-glow {
-    display: none;
-  }
-}
