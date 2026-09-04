@@ -269,10 +269,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
+      if (!target) return;
+      e.preventDefault();
+      if ('scrollBehavior' in document.documentElement.style) {
         target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        const navHeight = (document.getElementById('navbar') || { offsetHeight: 80 }).offsetHeight;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 16;
+        window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
       }
     });
   });

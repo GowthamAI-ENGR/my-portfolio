@@ -417,6 +417,21 @@ ul {
   box-shadow: 0 8px 25px var(--accent-glow);
 }
 
+/* Touch interaction — remove 300ms delay on mobile */
+.btn,
+.theme-toggle,
+.hamburger,
+.mobile-nav-link,
+.assistant-fab,
+.assistant-send,
+.assistant-chip,
+.resume-tool,
+.contact-card,
+.project-buttons a,
+.project-buttons button {
+  touch-action: manipulation;
+}
+
 /* ========================================
    SECTIONS
    ======================================== */

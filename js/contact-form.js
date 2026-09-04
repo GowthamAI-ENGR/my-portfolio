@@ -119,11 +119,15 @@
     const formData = new FormData(form);
     formData.append('_subject', `Portfolio enquiry from ${nameInput.value.trim()}`);
 
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timeoutId = controller ? setTimeout(() => controller.abort(), 15000) : null;
+
     try {
       const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
         body: formData,
-        headers: { Accept: 'application/json' }
+        headers: { Accept: 'application/json' },
+        signal: controller ? controller.signal : undefined
       });
 
       if (response.ok) {
@@ -136,6 +140,7 @@
     } catch {
       showMessage('error', 'Network error. Please check your connection and try again.');
     } finally {
+      if (timeoutId) clearTimeout(timeoutId);
       setLoading(false);
     }
   });

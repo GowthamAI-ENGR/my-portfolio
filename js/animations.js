@@ -53,6 +53,7 @@
 
   function initMagneticButtons() {
     if (prefersReducedMotion) return;
+    if (window.matchMedia('(hover: none)').matches) return;
     const magnetButtons = document.querySelectorAll('.magnetic-btn');
 
     magnetButtons.forEach((btn) => {
