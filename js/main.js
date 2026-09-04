@@ -201,8 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = navLinksContainer.classList.contains('active') ? 'hidden' : '';
   });
 
-  // Close mobile menu on link click
-  navLinks.forEach(link => {
+  // Close mobile menu on link click (desktop nav + mobile bottom nav)
+  const allCloseLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+  allCloseLinks.forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('active');
       navLinksContainer.classList.remove('active');

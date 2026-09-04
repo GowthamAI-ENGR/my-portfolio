@@ -206,6 +206,16 @@
   gap: 18px;
 }
 
+@media (max-width: 768px) {
+  .contact-form-wrap {
+    padding: 24px 16px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
@@ -762,7 +772,7 @@
   }
 
   body {
-    padding-bottom: 68px;
+    padding-bottom: 80px;
   }
 
   .assistant {
