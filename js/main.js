@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let connections = [];
   let animFrame;
   let mouse = { x: null, y: null };
+  let canvasVisible = true;
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -23,6 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
+
+  // Pause animation when hero is offscreen
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      canvasVisible = entry.isIntersecting;
+      if (canvasVisible && !animFrame) {
+        animateParticles();
+      }
+    });
+  }, { threshold: 0 });
+
+  const heroSection = document.getElementById('home');
+  if (heroSection) heroObserver.observe(heroSection);
 
   canvas.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
@@ -72,7 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function initParticles() {
-    const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 80);
+    // Reduce particles on mobile for performance
+    const isMobile = window.innerWidth <= 768;
+    const area = canvas.width * canvas.height;
+    const divisor = isMobile ? 20000 : 12000;
+    const count = Math.min(Math.floor(area / divisor), isMobile ? 40 : 80);
     particles = [];
     for (let i = 0; i < count; i++) {
       particles.push(new Particle());
@@ -101,6 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function animateParticles() {
+    if (!canvasVisible) {
+      animFrame = null;
+      return;
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
       p.update();

@@ -19,11 +19,13 @@
     },
     about: 'Gowtham Ravi is an AI/ML Engineer and M.Sc. Artificial Intelligence candidate who builds practical, data-driven solutions. His interests span machine learning, deep learning, data analysis, and intelligent application development.',
     skills: [
-      'Python', 'R', 'SQL', 'HTML',
+      'Python', 'JavaScript', 'SQL', 'HTML',
       'Machine Learning', 'Deep Learning', 'Neural Networks',
-      'TensorFlow', 'PyTorch', 'scikit-learn',
-      'EDA', 'Statistical Modelling', 'Data Analysis',
-      'Git', 'GitHub', 'Jupyter Notebook', 'Google Colab',
+      'TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn',
+      'Large Language Models', 'Hugging Face', 'Transformers', 'Fine-Tuning', 'NLP', 'RAG', 'AI Agents',
+      'Pandas', 'NumPy', 'Matplotlib', 'Data Visualization', 'EDA',
+      'Flask', 'FastAPI', 'MySQL', 'Streamlit',
+      'Git', 'GitHub', 'GitHub Pages',
       'Full Stack Development', 'APIs', 'Databases'
     ],
     projects: [
@@ -117,11 +119,13 @@
     // Skills / technologies
     if (includesAny(raw, ['technology', 'technologies', 'skills', 'stack', 'tools', 'language', 'libraries', 'tech '])) {
       return "Gowtham's core toolkit:\n" +
-        'Programming: Python, R, SQL, HTML\n' +
-        'AI/ML: Machine Learning, Deep Learning, Neural Networks, TensorFlow, PyTorch, scikit-learn\n' +
-        'Data: EDA, Statistical Modelling, Data Analysis\n' +
-        'Tools: Git, GitHub, Jupyter Notebook, Google Colab\n' +
-        'Plus full-stack skills: APIs, databases, CRUD, testing, and deployment.';
+        'Programming: Python, JavaScript, SQL, HTML\n' +
+        'Machine Learning: Scikit-learn, Regression, Classification, Clustering, Feature Engineering\n' +
+        'Deep Learning: TensorFlow, PyTorch, Keras, Neural Networks\n' +
+        'AI/LLM: Large Language Models, Hugging Face, Transformers, Fine-Tuning, NLP, RAG, AI Agents\n' +
+        'Data Science: Pandas, NumPy, Matplotlib, Data Visualization, EDA\n' +
+        'Backend & Deployment: Flask, FastAPI, MySQL, Streamlit, GitHub Pages, Git\n\n' +
+        'Plus full-stack development skills: APIs, databases, responsive UIs, and deployment.';
     }
 
     // Experience

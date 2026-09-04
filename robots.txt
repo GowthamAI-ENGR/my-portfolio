@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gowtham-ravi-portfolio.example.com/sitemap.xml
+Sitemap: https://gowthamai-engr.github.io/my-portfolio/sitemap.xml

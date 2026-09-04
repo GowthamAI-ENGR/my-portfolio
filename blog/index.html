@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Gowtham Ravi — AI/ML Engineer</title>
+  <meta name="description" content="Technical articles on machine learning, deep learning, Python, data science, and AI engineering by Gowtham Ravi.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gowthamai-engr.github.io/my-portfolio/blog/">
+  <meta property="og:title" content="Blog | Gowtham Ravi — AI/ML Engineer">
+  <meta property="og:description" content="Technical articles on machine learning, deep learning, Python, data science, and AI engineering.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gowthamai-engr.github.io/my-portfolio/blog/">
+  <meta property="og:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog | Gowtham Ravi — AI/ML Engineer">
+  <meta name="twitter:description" content="Technical articles on machine learning, deep learning, Python, data science, and AI engineering.">
+  <meta name="twitter:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Gowtham Ravi — AI/ML Engineering Blog",
+    "url": "https://gowthamai-engr.github.io/my-portfolio/blog/",
+    "author": {
+      "@type": "Person",
+      "name": "Gowtham Ravi",
+      "url": "https://gowthamai-engr.github.io/my-portfolio/"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/features.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('gr-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <style>
+    .blog-header { padding: 120px 0 60px; text-align: center; }
+    .blog-header h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 12px; }
+    .blog-header p { color: var(--text-muted); max-width: 520px; margin: 0 auto; font-size: 1.05rem; }
+    .blog-list { display: grid; gap: 28px; max-width: 760px; margin: 0 auto; padding: 0 24px 100px; }
+    .blog-list-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; transition: var(--transition); }
+    .blog-list-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(99, 102, 241, 0.1); }
+    .blog-list-meta { display: flex; gap: 16px; margin-bottom: 12px; }
+    .blog-list-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); }
+    .blog-list-read { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); }
+    .blog-list-card h2 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; line-height: 1.4; }
+    .blog-list-card h2 a { color: inherit; text-decoration: none; }
+    .blog-list-card h2 a:hover { color: var(--accent); }
+    .blog-list-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px; }
+    .blog-list-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .blog-list-tags span { font-family: var(--font-mono); font-size: 0.75rem; padding: 4px 10px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); }
+    .blog-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; }
+    .blog-back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="navbar scrolled" aria-label="Primary">
+    <div class="nav-container">
+      <a href="../#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../#home" class="nav-link">Home</a></li>
+        <li><a href="../#about" class="nav-link">About</a></li>
+        <li><a href="../#skills" class="nav-link">Skills</a></li>
+        <li><a href="../#projects" class="nav-link">Projects</a></li>
+        <li><a href="../#blog" class="nav-link active">Blog</a></li>
+        <li><a href="../#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <svg class="theme-icon theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-icon theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="blog-header">
+      <div class="container">
+        <a href="../#home" class="blog-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Portfolio
+        </a>
+        <h1>Technical <span class="gradient-text">Blog</span></h1>
+        <p>Practical articles on machine learning, deployment, and AI engineering.</p>
+      </div>
+    </div>
+
+    <div class="blog-list">
+      <article class="blog-list-card">
+        <div class="blog-list-meta">
+          <span class="blog-list-date">Sep 2026</span>
+          <span class="blog-list-read">5 min read</span>
+        </div>
+        <h2><a href="deploy-ml-models-streamlit.html">How to Deploy Machine Learning Models with Streamlit</a></h2>
+        <p>A practical guide to building interactive ML dashboards and deploying them as web applications using Python and Streamlit — from model training to production deployment.</p>
+        <div class="blog-list-tags">
+          <span>Python</span>
+          <span>Streamlit</span>
+          <span>Deployment</span>
+        </div>
+        <a href="deploy-ml-models-streamlit.html" class="btn btn-outline">Read Article</a>
+      </article>
+
+      <article class="blog-list-card">
+        <div class="blog-list-meta">
+          <span class="blog-list-date">Sep 2026</span>
+          <span class="blog-list-read">6 min read</span>
+        </div>
+        <h2><a href="decision-tree-vs-random-forest.html">Decision Tree vs Random Forest for Classification</a></h2>
+        <p>An in-depth comparison of Decision Trees and Random Forests for classification tasks — when to use each, how they differ, and practical implementation considerations.</p>
+        <div class="blog-list-tags">
+          <span>Machine Learning</span>
+          <span>Scikit-learn</span>
+          <span>Classification</span>
+        </div>
+        <a href="decision-tree-vs-random-forest.html" class="btn btn-outline">Read Article</a>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="../#home" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline">AI/ML Engineer &amp; Python Developer</p>
+        <p class="footer-copyright">&copy; 2026 Gowtham Ravi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/theme.js"></script>
+</body>
+</html>

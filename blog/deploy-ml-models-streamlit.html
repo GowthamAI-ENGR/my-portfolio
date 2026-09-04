@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Deploy Machine Learning Models with Streamlit | Gowtham Ravi</title>
+  <meta name="description" content="A practical guide to building interactive ML dashboards and deploying machine learning models as web applications using Python and Streamlit.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gowthamai-engr.github.io/my-portfolio/blog/deploy-ml-models-streamlit.html">
+  <meta property="og:title" content="How to Deploy Machine Learning Models with Streamlit">
+  <meta property="og:description" content="A practical guide to building interactive ML dashboards and deploying them as web applications using Python and Streamlit.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gowthamai-engr.github.io/my-portfolio/blog/deploy-ml-models-streamlit.html">
+  <meta property="og:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <meta property="article:published_time" content="2026-09-04">
+  <meta property="article:author" content="Gowtham Ravi">
+  <meta property="article:tag" content="Machine Learning">
+  <meta property="article:tag" content="Streamlit">
+  <meta property="article:tag" content="Python">
+  <meta property="article:tag" content="Deployment">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Deploy Machine Learning Models with Streamlit">
+  <meta name="twitter:description" content="A practical guide to building interactive ML dashboards with Python and Streamlit.">
+  <meta name="twitter:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How to Deploy Machine Learning Models with Streamlit",
+    "description": "A practical guide to building interactive ML dashboards and deploying machine learning models as web applications using Python and Streamlit.",
+    "datePublished": "2026-09-04",
+    "author": {
+      "@type": "Person",
+      "name": "Gowtham Ravi",
+      "url": "https://gowthamai-engr.github.io/my-portfolio/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Gowtham Ravi"
+    },
+    "url": "https://gowthamai-engr.github.io/my-portfolio/blog/deploy-ml-models-streamlit.html"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('gr-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <style>
+    .article-header { padding: 120px 0 40px; text-align: center; }
+    .article-header h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.3; margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .article-meta { display: flex; gap: 16px; justify-content: center; margin-bottom: 12px; }
+    .article-meta span { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); }
+    .article-meta .article-date { color: var(--accent); }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 24px 100px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin: 40px 0 16px; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin: 28px 0 12px; }
+    .article-body p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body code { font-family: var(--font-mono); font-size: 0.88rem; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.15); padding: 2px 8px; border-radius: 6px; color: var(--accent-hover); }
+    .article-body pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; overflow-x: auto; margin-bottom: 20px; }
+    .article-body pre code { background: none; border: none; padding: 0; font-size: 0.85rem; color: var(--text-secondary); }
+    .article-body blockquote { border-left: 3px solid var(--accent); padding: 12px 20px; margin: 20px 0; background: rgba(99, 102, 241, 0.05); border-radius: 0 var(--radius) var(--radius) 0; }
+    .article-body blockquote p { margin-bottom: 0; color: var(--text-muted); font-style: italic; }
+    .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .article-body a:hover { color: var(--accent-hover); }
+    .article-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .article-nav a { color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+    .article-nav a:hover { color: var(--accent); }
+    .blog-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; }
+    .blog-back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="navbar scrolled" aria-label="Primary">
+    <div class="nav-container">
+      <a href="../#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../#home" class="nav-link">Home</a></li>
+        <li><a href="../#skills" class="nav-link">Skills</a></li>
+        <li><a href="../#projects" class="nav-link">Projects</a></li>
+        <li><a href="../#blog" class="nav-link active">Blog</a></li>
+        <li><a href="../#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <svg class="theme-icon theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-icon theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="article-header">
+      <div class="container">
+        <a href="index.html" class="blog-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          All Articles
+        </a>
+        <div class="article-meta">
+          <span class="article-date">Sep 4, 2026</span>
+          <span>5 min read</span>
+        </div>
+        <h1>How to Deploy Machine Learning Models with Streamlit</h1>
+      </div>
+    </div>
+
+    <article class="article-body">
+      <h2>Why Deploy ML Models?</h2>
+      <p>
+        Training a machine learning model is only half the battle. The real value emerges when non-technical stakeholders, researchers, or end users can interact with your model through a clean interface — without writing a single line of Python. Deployment bridges the gap between a Jupyter notebook and a usable application.
+      </p>
+      <p>
+        Among the many deployment options available — Flask APIs, FastAPI services, Docker containers, cloud functions — Streamlit stands out for its speed of development and accessibility. It lets you turn a Python script into an interactive web application in minutes, making it ideal for ML prototypes, data dashboards, and portfolio projects.
+      </p>
+
+      <h2>What is Streamlit?</h2>
+      <p>
+        Streamlit is an open-source Python framework designed specifically for building data science and machine learning web applications. Unlike traditional web frameworks, Streamlit requires no HTML, CSS, or JavaScript knowledge. You write pure Python, and Streamlit renders an interactive UI automatically.
+      </p>
+      <p>Key characteristics:</p>
+      <ul>
+        <li>Pure Python — no frontend code required</li>
+        <li>Automatic re-rendering on file changes</li>
+        <li>Built-in widgets for sliders, dropdowns, file uploads, and more</li>
+        <li>Native support for pandas DataFrames, matplotlib plots, and model predictions</li>
+        <li>One-command deployment to Streamlit Community Cloud</li>
+      </ul>
+
+      <h2>Project Structure</h2>
+      <p>
+        A typical Streamlit ML project follows a simple structure:
+      </p>
+      <pre><code>my-ml-project/
+├── app.py              # Streamlit application
+├── model.pkl           # Serialized trained model
+├── requirements.txt    # Python dependencies
+└── data/
+    └── dataset.csv     # Training data (optional)</code></pre>
+      <p>
+        The <code>app.py</code> file is the entry point. It loads the model, defines the UI layout, handles user input, and displays predictions.
+      </p>
+
+      <h2>Building the Application</h2>
+      <h3>Step 1: Load the Trained Model</h3>
+      <p>
+        Use <code>joblib</code> or <code>pickle</code> to load your serialized model. For production, prefer <code>joblib</code> as it handles scikit-learn objects more efficiently:
+      </p>
+      <pre><code>import joblib
+model = joblib.load('model.pkl')</code></pre>
+
+      <h3>Step 2: Create the User Interface</h3>
+      <p>
+        Streamlit provides simple functions for building UI elements:
+      </p>
+      <pre><code>import streamlit as st
+
+st.title("ML Prediction Dashboard")
+st.sidebar.header("Input Parameters")
+
+age = st.sidebar.slider("Age", 10, 100, 25)
+glucose = st.sidebar.number_input("Glucose Level", 50, 300, 100)
+bp = st.sidebar.slider("Blood Pressure", 60, 180, 120)</code></pre>
+
+      <h3>Step 3: Make Predictions</h3>
+      <p>
+        Process the user inputs and pass them to the model:
+      </p>
+      <pre><code>import numpy as np
+
+if st.button("Predict"):
+    features = np.array([[age, glucose, bp]])
+    prediction = model.predict(features)
+    st.success(f"Prediction: {prediction[0]}")</code></pre>
+
+      <h3>Step 4: Display Results</h3>
+      <p>
+        Use Streamlit's charting capabilities to visualize results. Display prediction probabilities, feature importance, or data distributions:
+      </p>
+      <pre><code>import pandas as pd
+
+st.subheader("Input Summary")
+st.dataframe(pd.DataFrame({
+    'Parameter': ['Age', 'Glucose', 'Blood Pressure'],
+    'Value': [age, glucose, bp]
+}))</code></pre>
+
+      <h2>Deployment to Streamlit Cloud</h2>
+      <p>
+        Streamlit Community Cloud provides free hosting for public projects. The deployment process is straightforward:
+      </p>
+      <ol>
+        <li>Push your project to a public GitHub repository</li>
+        <li>Visit <a href="https://streamlit.io/cloud" target="_blank" rel="noopener">share.streamlit.io</a></li>
+        <li>Connect your GitHub account</li>
+        <li>Select the repository and entry file (<code>app.py</code>)</li>
+        <li>Click "Deploy"</li>
+      </ol>
+      <p>
+        Your application will be live within minutes at a URL like <code>your-app-name.streamlit.app</code>.
+      </p>
+
+      <h2>Best Practices</h2>
+      <ul>
+        <li><strong>Cache expensive operations</strong> — Use <code>@st.cache_data</code> or <code>@st.cache_resource</code> to avoid reloading models on every interaction</li>
+        <li><strong>Keep requirements minimal</strong> — Only include packages actually used in your application</li>
+        <li><strong>Handle errors gracefully</strong> — Validate user inputs and provide clear error messages</li>
+        <li><strong>Optimize model loading</strong> — Load models once at startup, not on every rerun</li>
+        <li><strong>Use session state</strong> — Maintain user-specific data across interactions with <code>st.session_state</code></li>
+      </ul>
+
+      <h2>Real-World Example</h2>
+      <p>
+        I've deployed three ML applications using this exact approach:
+      </p>
+      <ul>
+        <li><a href="https://pregnancyriskprediction-1222.streamlit.app/" target="_blank" rel="noopener">Maternal Health Risk Prediction</a> — Healthcare risk classification using scikit-learn</li>
+        <li><a href="https://crop-recommendation-system-2222.streamlit.app/" target="_blank" rel="noopener">Crop Recommendation System</a> — Agricultural intelligence using Random Forest</li>
+        <li><a href="https://movierecommendationsystem-govi.streamlit.app/" target="_blank" rel="noopener">Movie Recommendation System</a> — Personalized recommendations using collaborative filtering</li>
+      </ul>
+      <p>
+        Each project follows the same pattern: train a model in Python, serialize it, build a Streamlit interface, and deploy to the cloud.
+      </p>
+
+      <h2>Limitations and Alternatives</h2>
+      <p>
+        Streamlit is excellent for prototypes and portfolio projects, but has limitations for production use:
+      </p>
+      <ul>
+        <li>Limited customization compared to full-stack frameworks</li>
+        <li>Not suitable for high-traffic production applications</li>
+        <li>Limited authentication and authorization options</li>
+      </ul>
+      <p>
+        For production applications, consider <a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener">FastAPI</a> for REST APIs, <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener">Flask</a> for lightweight web services, or containerized solutions with Docker and cloud platforms.
+      </p>
+
+      <h2>Conclusion</h2>
+      <p>
+        Streamlit democratizes ML deployment. It removes the frontend barrier, letting data scientists and ML engineers focus on what they do best — building models — while still delivering interactive, shareable applications. For portfolio projects, academic prototypes, and internal tools, it remains one of the fastest paths from model to deployment.
+      </p>
+
+      <div class="article-nav">
+        <a href="index.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          All Articles
+        </a>
+        <a href="decision-tree-vs-random-forest.html">
+          Next: Decision Tree vs Random Forest
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="../#home" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline">AI/ML Engineer &amp; Python Developer</p>
+        <p class="footer-copyright">&copy; 2026 Gowtham Ravi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/theme.js"></script>
+</body>
+</html>
