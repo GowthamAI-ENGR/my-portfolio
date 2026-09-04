@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Crop Recommendation System with Python | Gowtham Ravi</title>
+  <meta name="description" content="Step-by-step guide to building a crop recommendation system using Python, Random Forest, and Streamlit. Learn how to train an ML model that recommends crops based on soil parameters.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gowthamai-engr.github.io/my-portfolio/blog/crop-recommendation-python.html">
+  <meta property="og:title" content="Building a Crop Recommendation System with Python">
+  <meta property="og:description" content="Step-by-step guide to building a crop recommendation system using Python, Random Forest, and Streamlit.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gowthamai-engr.github.io/my-portfolio/blog/crop-recommendation-python.html">
+  <meta property="og:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <meta property="article:published_time" content="2026-09-04">
+  <meta property="article:author" content="Gowtham Ravi">
+  <meta property="article:tag" content="Python">
+  <meta property="article:tag" content="Random Forest">
+  <meta property="article:tag" content="Agriculture">
+  <meta property="article:tag" content="Streamlit">
+  <meta property="article:tag" content="Machine Learning">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Building a Crop Recommendation System with Python">
+  <meta name="twitter:description" content="Step-by-step guide to building a crop recommendation system using Python, Random Forest, and Streamlit.">
+  <meta name="twitter:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Building a Crop Recommendation System with Python",
+    "description": "Step-by-step guide to building a crop recommendation system using Python, Random Forest, and Streamlit. Learn how to train an ML model that recommends crops based on soil parameters.",
+    "datePublished": "2026-09-04",
+    "author": {
+      "@type": "Person",
+      "name": "Gowtham Ravi",
+      "url": "https://gowthamai-engr.github.io/my-portfolio/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Gowtham Ravi"
+    },
+    "url": "https://gowthamai-engr.github.io/my-portfolio/blog/crop-recommendation-python.html"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('gr-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <style>
+    .article-header { padding: 120px 0 40px; text-align: center; }
+    .article-header h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.3; margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .article-meta { display: flex; gap: 16px; justify-content: center; margin-bottom: 12px; }
+    .article-meta span { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); }
+    .article-meta .article-date { color: var(--accent); }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 24px 100px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin: 40px 0 16px; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin: 28px 0 12px; }
+    .article-body p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body code { font-family: var(--font-mono); font-size: 0.88rem; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.15); padding: 2px 8px; border-radius: 6px; color: var(--accent-hover); }
+    .article-body pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; overflow-x: auto; margin-bottom: 20px; }
+    .article-body pre code { background: none; border: none; padding: 0; font-size: 0.85rem; color: var(--text-secondary); }
+    .article-body blockquote { border-left: 3px solid var(--accent); padding: 12px 20px; margin: 20px 0; background: rgba(99, 102, 241, 0.05); border-radius: 0 var(--radius) var(--radius) 0; }
+    .article-body blockquote p { margin-bottom: 0; color: var(--text-muted); font-style: italic; }
+    .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .article-body a:hover { color: var(--accent-hover); }
+    .article-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .article-nav a { color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+    .article-nav a:hover { color: var(--accent); }
+    .blog-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; }
+    .blog-back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="navbar scrolled" aria-label="Primary">
+    <div class="nav-container">
+      <a href="../#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../#home" class="nav-link">Home</a></li>
+        <li><a href="../#skills" class="nav-link">Skills</a></li>
+        <li><a href="../#projects" class="nav-link">Projects</a></li>
+        <li><a href="../#blog" class="nav-link active">Blog</a></li>
+        <li><a href="../#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <svg class="theme-icon theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-icon theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="article-header">
+      <div class="container">
+        <a href="index.html" class="blog-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          All Articles
+        </a>
+        <div class="article-meta">
+          <span class="article-date">Sep 4, 2026</span>
+          <span>7 min read</span>
+        </div>
+        <h1>Building a Crop Recommendation System with Python</h1>
+      </div>
+    </div>
+
+    <article class="article-body">
+      <h2>The Problem</h2>
+      <p>
+        Agriculture remains one of the largest employers worldwide, yet many farmers still rely on intuition and experience to decide which crops to plant. Soil composition varies dramatically across regions, and planting the wrong crop in the wrong soil can lead to poor yields, wasted resources, and financial loss.
+      </p>
+      <p>
+        A crop recommendation system takes the guesswork out of this decision. By analyzing soil parameters — nitrogen, phosphorus, potassium levels, temperature, humidity, pH, and rainfall — a machine learning model can predict which crop is most likely to thrive in a given environment.
+      </p>
+
+      <h2>The Dataset</h2>
+      <p>
+        The Crop Recommendation dataset contains 2,200 samples across 22 different crops. Each sample includes seven numerical features:
+      </p>
+      <ul>
+        <li><strong>N</strong> — Nitrogen content in the soil (kg/ha)</li>
+        <li><strong>P</strong> — Phosphorus content in the soil (kg/ha)</li>
+        <li><strong>K</strong> — Potassium content in the soil (kg/ha)</li>
+        <li><strong>Temperature</strong> — Average temperature in Celsius</li>
+        <li><strong>Humidity</strong> — Relative humidity percentage</li>
+        <li><strong>pH</strong> — Soil pH value</li>
+        <li><strong>Rainfall</strong> — Rainfall in mm</li>
+      </ul>
+      <p>
+        The target variable is the crop label — one of 22 crops including rice, wheat, maize, cotton, coffee, mango, and more.
+      </p>
+
+      <h2>Data Exploration</h2>
+      <p>
+        Before building the model, it's worth understanding the data. Load the dataset and check basic statistics:
+      </p>
+      <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('Crop_recommendation.csv')
+print(df.shape)       # (2200, 8)
+print(df.head())
+print(df.describe())
+print(df['label'].value_counts())</code></pre>
+      <p>
+        The dataset is balanced — each crop has exactly 100 samples. This means we don't need to worry about class imbalance during training.
+      </p>
+      <p>
+        Correlation analysis reveals which features matter most. Temperature and humidity tend to be highly correlated, as do nitrogen and phosphorus levels in certain soil types.
+      </p>
+
+      <h2>Feature Engineering</h2>
+      <p>
+        The raw features are sufficient for a baseline model, but a few transformations can improve performance:
+      </p>
+      <pre><code>from sklearn.preprocessing import LabelEncoder, StandardScaler
+
+# Encode the target labels
+le = LabelEncoder()
+df['label_encoded'] = le.fit_transform(df['label'])
+
+# Separate features and target
+X = df.drop(['label', 'label_encoded'], axis=1)
+y = df['label_encoded']
+
+# Scale features (important for some algorithms)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)</code></pre>
+      <p>
+        Standard scaling ensures that features like rainfall (which ranges from 20-300mm) don't dominate features like pH (which ranges from 3.5-9.5) simply because of their magnitude.
+      </p>
+
+      <h2>Model Training</h2>
+      <p>
+        Random Forest is an excellent choice for this problem. It handles multi-class classification well, requires minimal hyperparameter tuning, and provides feature importance rankings. For a detailed comparison of tree-based algorithms, see my article on <a href="decision-tree-vs-random-forest.html">Decision Tree vs Random Forest</a>.
+      </p>
+      <pre><code>from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split, cross_val_score
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# Train the model
+rf_model = RandomForestClassifier(
+    n_estimators=200,
+    max_depth=20,
+    min_samples_split=5,
+    random_state=42
+)
+rf_model.fit(X_train, y_train)
+
+# Evaluate with cross-validation
+cv_scores = cross_val_score(rf_model, X_scaled, y, cv=5, scoring='accuracy')
+print(f"Cross-validation accuracy: {cv_scores.mean():.4f} (+/- {cv_scores.std():.4f})")</code></pre>
+      <p>
+        With proper tuning, Random Forest typically achieves 95-99% accuracy on this dataset. The model learns distinct soil profiles for each crop — rice thrives in high-humidity, high-rainfall environments, while cotton prefers warmer, drier conditions.
+      </p>
+
+      <h2>Evaluation</h2>
+      <p>
+        Beyond overall accuracy, a confusion matrix reveals which crops are最容易 confused:
+      </p>
+      <pre><code>from sklearn.metrics import classification_report, confusion_matrix
+
+y_pred = rf_model.predict(X_test)
+print(classification_report(y_test, y_pred, target_names=le.classes_))</code></pre>
+      <p>
+        Most crops achieve near-perfect precision and recall. The few misclassifications typically occur between botanically similar crops (e.g., moong vs. masoor beans) that share similar soil requirements.
+      </p>
+
+      <h2>Feature Importance</h2>
+      <p>
+        One of Random Forest's strengths is built-in feature importance. Understanding which features drive predictions adds interpretability:
+      </p>
+      <pre><code>importances = rf_model.feature_importances_
+feature_names = X.columns
+
+# Sort by importance
+indices = np.argsort(importances)[::-1]
+for i in indices:
+    print(f"{feature_names[i]}: {importances[i]:.4f}")</code></pre>
+      <p>
+        Typically, rainfall, humidity, and temperature are the most important features for crop selection, followed by potassium and nitrogen levels. This aligns with agricultural science — climate and soil nutrients are the primary determinants of crop suitability.
+      </p>
+
+      <h2>Deployment with Streamlit</h2>
+      <p>
+        A trained model is only useful if people can interact with it. Streamlit turns the Python script into a web application with minimal effort. For a comprehensive guide on ML deployment with Streamlit, see my <a href="deploy-ml-models-streamlit.html">Streamlit deployment article</a>.
+      </p>
+      <pre><code>import streamlit as st
+import joblib
+
+# Load model and scaler
+model = joblib.load('crop_model.pkl')
+scaler = joblib.load('scaler.pkl')
+le = joblib.load('label_encoder.pkl')
+
+st.title("Crop Recommendation System")
+
+# Input fields
+n = st.slider("Nitrogen (N)", 0, 150, 50)
+p = st.slider("Phosphorus (P)", 0, 150, 50)
+k = st.slider("Potassium (K)", 0, 200, 50)
+temperature = st.slider("Temperature (°C)", 0.0, 50.0, 25.0)
+humidity = st.slider("Humidity (%)", 0.0, 100.0, 70.0)
+ph = st.slider("Soil pH", 0.0, 14.0, 6.5)
+rainfall = st.slider("Rainfall (mm)", 0.0, 400.0, 100.0)
+
+if st.button("Recommend Crop"):
+    features = np.array([[n, p, k, temperature, humidity, ph, rainfall]])
+    features_scaled = scaler.transform(features)
+    prediction = model.predict(features_scaled)
+    crop_name = le.inverse_transform(prediction)[0]
+    st.success(f"Recommended crop: {crop_name}")</code></pre>
+
+      <h2>Live Demo</h2>
+      <p>
+        The complete application is deployed and accessible here:
+      </p>
+      <ul>
+        <li><a href="https://crop-recommendation-system-2222.streamlit.app/" target="_blank" rel="noopener">Crop Recommendation System</a> — Live Streamlit application</li>
+        <li><a href="https://github.com/GowthamAI-ENGR" target="_blank" rel="noopener">Source Code</a> — GitHub repository</li>
+      </ul>
+
+      <h2>Extensions and Improvements</h2>
+      <p>
+        This baseline system can be extended in several directions:
+      </p>
+      <ul>
+        <li><strong>Multi-crop recommendations</strong> — Return top-3 crops with confidence scores instead of a single prediction</li>
+        <li><strong>Seasonal filtering</strong> — Incorporate planting season as an additional feature</li>
+        <li><strong>Regional data</strong> — Train on region-specific soil data for more accurate local recommendations</li>
+        <li><strong>Fertilizer suggestions</strong> — Extend the system to recommend fertilizers alongside crops</li>
+        <li><strong>API deployment</strong> — Wrap the model in a FastAPI service for integration with mobile apps</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>
+        Building a crop recommendation system demonstrates the full ML pipeline: data exploration, preprocessing, model training, evaluation, and deployment. Random Forest provides a strong baseline with minimal tuning, and Streamlit makes deployment accessible without frontend expertise. The real value emerges when farmers and agricultural advisors can use such tools to make data-driven planting decisions.
+      </p>
+
+      <div class="article-nav">
+        <a href="feature-engineering-machine-learning.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Previous: Feature Engineering for ML
+        </a>
+        <a href="neural-networks-tensorflow-beginners.html">
+          Next: Neural Networks with TensorFlow
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="../#home" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline">AI/ML Engineer &amp; Python Developer</p>
+        <p class="footer-copyright">&copy; 2026 Gowtham Ravi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/theme.js"></script>
+</body>
+</html>

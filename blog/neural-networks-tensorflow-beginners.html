@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Beginner's Guide to Neural Networks with TensorFlow | Gowtham Ravi</title>
+  <meta name="description" content="Learn the fundamentals of neural networks and build your first deep learning model with TensorFlow and Keras. A practical beginner's guide with code examples.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gowthamai-engr.github.io/my-portfolio/blog/neural-networks-tensorflow-beginners.html">
+  <meta property="og:title" content="A Beginner's Guide to Neural Networks with TensorFlow">
+  <meta property="og:description" content="Learn the fundamentals of neural networks and build your first deep learning model with TensorFlow and Keras.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gowthamai-engr.github.io/my-portfolio/blog/neural-networks-tensorflow-beginners.html">
+  <meta property="og:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <meta property="article:published_time" content="2026-09-04">
+  <meta property="article:author" content="Gowtham Ravi">
+  <meta property="article:tag" content="TensorFlow">
+  <meta property="article:tag" content="Neural Networks">
+  <meta property="article:tag" content="Deep Learning">
+  <meta property="article:tag" content="Python">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="A Beginner's Guide to Neural Networks with TensorFlow">
+  <meta name="twitter:description" content="Learn the fundamentals of neural networks and build your first deep learning model with TensorFlow.">
+  <meta name="twitter:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "A Beginner's Guide to Neural Networks with TensorFlow",
+    "description": "Learn the fundamentals of neural networks and build your first deep learning model with TensorFlow and Keras. A practical beginner's guide with code examples.",
+    "datePublished": "2026-09-04",
+    "author": {
+      "@type": "Person",
+      "name": "Gowtham Ravi",
+      "url": "https://gowthamai-engr.github.io/my-portfolio/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Gowtham Ravi"
+    },
+    "url": "https://gowthamai-engr.github.io/my-portfolio/blog/neural-networks-tensorflow-beginners.html"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('gr-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <style>
+    .article-header { padding: 120px 0 40px; text-align: center; }
+    .article-header h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.3; margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .article-meta { display: flex; gap: 16px; justify-content: center; margin-bottom: 12px; }
+    .article-meta span { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); }
+    .article-meta .article-date { color: var(--accent); }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 24px 100px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin: 40px 0 16px; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin: 28px 0 12px; }
+    .article-body p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body code { font-family: var(--font-mono); font-size: 0.88rem; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.15); padding: 2px 8px; border-radius: 6px; color: var(--accent-hover); }
+    .article-body pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; overflow-x: auto; margin-bottom: 20px; }
+    .article-body pre code { background: none; border: none; padding: 0; font-size: 0.85rem; color: var(--text-secondary); }
+    .article-body blockquote { border-left: 3px solid var(--accent); padding: 12px 20px; margin: 20px 0; background: rgba(99, 102, 241, 0.05); border-radius: 0 var(--radius) var(--radius) 0; }
+    .article-body blockquote p { margin-bottom: 0; color: var(--text-muted); font-style: italic; }
+    .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .article-body a:hover { color: var(--accent-hover); }
+    .article-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .article-nav a { color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+    .article-nav a:hover { color: var(--accent); }
+    .blog-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; }
+    .blog-back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="navbar scrolled" aria-label="Primary">
+    <div class="nav-container">
+      <a href="../#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../#home" class="nav-link">Home</a></li>
+        <li><a href="../#skills" class="nav-link">Skills</a></li>
+        <li><a href="../#projects" class="nav-link">Projects</a></li>
+        <li><a href="../#blog" class="nav-link active">Blog</a></li>
+        <li><a href="../#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <svg class="theme-icon theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-icon theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="article-header">
+      <div class="container">
+        <a href="index.html" class="blog-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          All Articles
+        </a>
+        <div class="article-meta">
+          <span class="article-date">Sep 4, 2026</span>
+          <span>8 min read</span>
+        </div>
+        <h1>A Beginner's Guide to Neural Networks with TensorFlow</h1>
+      </div>
+    </div>
+
+    <article class="article-body">
+      <h2>What Are Neural Networks?</h2>
+      <p>
+        Neural networks are computational models inspired by the human brain. They consist of layers of interconnected nodes (neurons) that process information and learn patterns from data. Unlike traditional algorithms that follow explicit rules, neural networks learn by example — they adjust their internal parameters during training to minimize prediction errors.
+      </p>
+      <p>
+        The core idea is simple: given input data, a neural network transforms it through multiple layers of mathematical operations, progressively extracting higher-level features. A network trained on images might learn edges in early layers, shapes in middle layers, and object parts in deeper layers.
+      </p>
+
+      <h2>The Perceptron</h2>
+      <p>
+        The basic building block is the perceptron — a single neuron that computes a weighted sum of its inputs, adds a bias, and passes the result through an activation function:
+      </p>
+      <pre><code>output = activation(w1*x1 + w2*x2 + ... + wn*xn + bias)</code></pre>
+      <p>
+        A single perceptron can only learn linearly separable patterns (like AND, OR gates). The real power comes from stacking perceptrons into layers and connecting multiple layers together — this is where deep learning begins.
+      </p>
+
+      <h2>Activation Functions</h2>
+      <p>
+        Without activation functions, a neural network would be equivalent to a single linear transformation, no matter how many layers it has. Activation functions introduce non-linearity, enabling the network to learn complex patterns.
+      </p>
+      <h3>Common Activation Functions</h3>
+      <ul>
+        <li><strong>ReLU (Rectified Linear Unit)</strong> — <code>f(x) = max(0, x)</code>. The default choice for hidden layers. Simple, computationally efficient, and avoids the vanishing gradient problem for positive values.</li>
+        <li><strong>Sigmoid</strong> — <code>f(x) = 1 / (1 + e^-x)</code>. Outputs values between 0 and 1. Useful for binary classification output layers but prone to vanishing gradients in deep networks.</li>
+        <li><strong>Softmax</strong> — Converts raw scores into probabilities that sum to 1. Used in the output layer for multi-class classification.</li>
+        <li><strong>Tanh</strong> — <code>f(x) = (e^x - e^-x) / (e^x + e^-x)</code>. Outputs values between -1 and 1. Centered around zero, which can help with training dynamics.</li>
+      </ul>
+
+      <h2>How Neural Networks Learn</h2>
+      <p>
+        Training a neural network involves three key steps:
+      </p>
+      <ol>
+        <li><strong>Forward pass</strong> — Input data flows through the network, producing a prediction</li>
+        <li><strong>Loss calculation</strong> — A loss function measures how far the prediction is from the true label</li>
+        <li><strong>Backward pass (backpropagation)</strong> — Gradients of the loss with respect to each weight are computed, and weights are updated to reduce the loss</li>
+      </ol>
+      <p>
+        This cycle repeats for many iterations (epochs) until the model converges. The optimizer — typically Adam or SGD — determines how weights are updated based on the computed gradients.
+      </p>
+      <pre><code># The training loop in pseudocode
+for epoch in range(num_epochs):
+    for batch in dataloader:
+        predictions = model(batch.x)          # Forward pass
+        loss = loss_function(predictions, batch.y)  # Compute loss
+        loss.backward()                        # Backpropagation
+        optimizer.step()                       # Update weights
+        optimizer.zero_grad()                  # Reset gradients</code></pre>
+
+      <h2>Building a Neural Network with TensorFlow</h2>
+      <p>
+        TensorFlow, combined with its high-level Keras API, makes building neural networks straightforward. Here's a complete example using the MNIST handwritten digit dataset:
+      </p>
+
+      <h3>Step 1: Load and Prepare Data</h3>
+      <pre><code>import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+
+# Load MNIST dataset
+(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+
+# Normalize pixel values to [0, 1]
+x_train = x_train.reshape(-1, 784).astype('float32') / 255.0
+x_test = x_test.reshape(-1, 784).astype('float32') / 255.0
+
+# One-hot encode labels
+y_train = keras.utils.to_categorical(y_train, 10)
+y_test = keras.utils.to_categorical(y_test, 10)</code></pre>
+      <p>
+        Each MNIST image is 28x28 pixels = 784 features. We flatten the 2D image into a 1D vector and normalize pixel values from [0, 255] to [0, 1].
+      </p>
+
+      <h3>Step 2: Define the Model</h3>
+      <pre><code>model = keras.Sequential([
+    keras.layers.Dense(256, activation='relu', input_shape=(784,)),
+    keras.layers.Dropout(0.3),
+    keras.layers.Dense(128, activation='relu'),
+    keras.layers.Dropout(0.3),
+    keras.layers.Dense(10, activation='softmax')
+])
+
+model.summary()</code></pre>
+      <p>
+        This architecture has:
+      </p>
+      <ul>
+        <li><strong>Input layer</strong> — 784 neurons (one per pixel)</li>
+        <li><strong>Hidden layer 1</strong> — 256 neurons with ReLU activation</li>
+        <li><strong>Dropout</strong> — Randomly deactivates 30% of neurons during training to prevent overfitting</li>
+        <li><strong>Hidden layer 2</strong> — 128 neurons with ReLU activation</li>
+        <li><strong>Output layer</strong> — 10 neurons with softmax (one per digit class)</li>
+      </ul>
+
+      <h3>Step 3: Compile and Train</h3>
+      <pre><code>model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+history = model.fit(
+    x_train, y_train,
+    epochs=20,
+    batch_size=128,
+    validation_split=0.1,
+    verbose=1
+)</code></pre>
+      <p>
+        <strong>Adam</strong> is the go-to optimizer for most problems — it adapts learning rates per parameter and converges faster than basic SGD. <strong>Categorical crossentropy</strong> is the standard loss function for multi-class classification.
+      </p>
+
+      <h3>Step 4: Evaluate</h3>
+      <pre><code>test_loss, test_accuracy = model.evaluate(x_test, y_test)
+print(f"Test accuracy: {test_accuracy:.4f}")</code></pre>
+      <p>
+        A simple two-hidden-layer network like this typically achieves 97-98% accuracy on MNIST. With convolutional layers (CNNs), accuracy can exceed 99%.
+      </p>
+
+      <h2>Key Concepts for Beginners</h2>
+      <h3>Overfitting and Regularization</h3>
+      <p>
+        Overfitting occurs when a model memorizes training data instead of learning generalizable patterns. Common regularization techniques include:
+      </p>
+      <ul>
+        <li><strong>Dropout</strong> — Randomly deactivates neurons during training</li>
+        <li><strong>Early stopping</strong> — Stop training when validation loss stops improving</li>
+        <li><strong>L2 regularization</strong> — Penalizes large weights</li>
+        <li><strong>Data augmentation</strong> — Artificially increase training data variety</li>
+      </ul>
+
+      <h3>Learning Rate</h3>
+      <p>
+        The learning rate controls how much weights are updated during each step. Too high, and the model overshoots optimal values. Too low, and training takes forever. Adam's adaptive learning rate handles this automatically for most cases.
+      </p>
+
+      <h3>Batch Size</h3>
+      <p>
+        Instead of computing gradients on the entire dataset at once (expensive), we process data in small batches. Common batch sizes are 32, 64, 128, or 256. Larger batches provide more stable gradients but require more memory.
+      </p>
+
+      <h2>When to Use Neural Networks</h2>
+      <p>
+        Neural networks excel at tasks involving unstructured data — images, text, audio, time series. They're the right choice when:
+      </p>
+      <ul>
+        <li>You have large amounts of training data (thousands to millions of samples)</li>
+        <li>The problem involves complex, non-linear patterns</li>
+        <li>Traditional ML algorithms have plateaued in performance</li>
+        <li>Feature engineering is difficult or impractical</li>
+      </ul>
+      <p>
+        For structured/tabular data with smaller datasets, tree-based methods like <a href="decision-tree-vs-random-forest.html">Random Forest</a> often outperform neural networks with less tuning. For a practical example of tree-based methods, see my article on <a href="crop-recommendation-python.html">building a crop recommendation system</a>.
+      </p>
+
+      <h2>Next Steps</h2>
+      <p>
+        Once you're comfortable with dense networks, explore these areas:
+      </p>
+      <ul>
+        <li><strong>Convolutional Neural Networks (CNNs)</strong> — Specialized for image data</li>
+        <li><strong>Recurrent Neural Networks (RNNs/LSTMs)</strong> — For sequential data like text and time series</li>
+        <li><strong>Transfer Learning</strong> — Use pre-trained models (like BERT or ResNet) for your specific task</li>
+        <li><strong>TensorFlow Lite</strong> — Deploy models to mobile and edge devices</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>
+        Neural networks are powerful function approximators that learn patterns directly from data. TensorFlow and Keras make them accessible — you can build, train, and evaluate a working model in under 50 lines of code. Start with simple architectures, understand the fundamentals, and progressively tackle more complex problems as your intuition develops.
+      </p>
+
+      <div class="article-nav">
+        <a href="crop-recommendation-python.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Previous: Crop Recommendation with Python
+        </a>
+        <a href="feature-engineering-machine-learning.html">
+          Next: Feature Engineering for ML
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="../#home" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline">AI/ML Engineer &amp; Python Developer</p>
+        <p class="footer-copyright">&copy; 2026 Gowtham Ravi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/theme.js"></script>
+</body>
+</html>

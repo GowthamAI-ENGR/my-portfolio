@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feature Engineering for Machine Learning: A Practical Guide | Gowtham Ravi</title>
+  <meta name="description" content="A practical guide to feature engineering for machine learning — encoding categorical variables, scaling, feature selection, and real-world techniques that improve model performance.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gowthamai-engr.github.io/my-portfolio/blog/feature-engineering-machine-learning.html">
+  <meta property="og:title" content="Feature Engineering for Machine Learning: A Practical Guide">
+  <meta property="og:description" content="A practical guide to feature engineering for machine learning — encoding, scaling, selection, and real-world techniques.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gowthamai-engr.github.io/my-portfolio/blog/feature-engineering-machine-learning.html">
+  <meta property="og:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <meta property="article:published_time" content="2026-09-04">
+  <meta property="article:author" content="Gowtham Ravi">
+  <meta property="article:tag" content="Feature Engineering">
+  <meta property="article:tag" content="Scikit-learn">
+  <meta property="article:tag" content="Data Science">
+  <meta property="article:tag" content="Python">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Feature Engineering for Machine Learning: A Practical Guide">
+  <meta name="twitter:description" content="A practical guide to feature engineering for machine learning — encoding, scaling, selection, and real-world techniques.">
+  <meta name="twitter:image" content="https://gowthamai-engr.github.io/my-portfolio/assets/og-image.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Feature Engineering for Machine Learning: A Practical Guide",
+    "description": "A practical guide to feature engineering for machine learning — encoding categorical variables, scaling, feature selection, and real-world techniques that improve model performance.",
+    "datePublished": "2026-09-04",
+    "author": {
+      "@type": "Person",
+      "name": "Gowtham Ravi",
+      "url": "https://gowthamai-engr.github.io/my-portfolio/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Gowtham Ravi"
+    },
+    "url": "https://gowthamai-engr.github.io/my-portfolio/blog/feature-engineering-machine-learning.html"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('gr-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <style>
+    .article-header { padding: 120px 0 40px; text-align: center; }
+    .article-header h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.3; margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .article-meta { display: flex; gap: 16px; justify-content: center; margin-bottom: 12px; }
+    .article-meta span { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); }
+    .article-meta .article-date { color: var(--accent); }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 24px 100px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin: 40px 0 16px; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin: 28px 0 12px; }
+    .article-body p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body code { font-family: var(--font-mono); font-size: 0.88rem; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.15); padding: 2px 8px; border-radius: 6px; color: var(--accent-hover); }
+    .article-body pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; overflow-x: auto; margin-bottom: 20px; }
+    .article-body pre code { background: none; border: none; padding: 0; font-size: 0.85rem; color: var(--text-secondary); }
+    .article-body blockquote { border-left: 3px solid var(--accent); padding: 12px 20px; margin: 20px 0; background: rgba(99, 102, 241, 0.05); border-radius: 0 var(--radius) var(--radius) 0; }
+    .article-body blockquote p { margin-bottom: 0; color: var(--text-muted); font-style: italic; }
+    .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .article-body a:hover { color: var(--accent-hover); }
+    .article-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .article-nav a { color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+    .article-nav a:hover { color: var(--accent); }
+    .blog-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; }
+    .blog-back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="navbar scrolled" aria-label="Primary">
+    <div class="nav-container">
+      <a href="../#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../#home" class="nav-link">Home</a></li>
+        <li><a href="../#skills" class="nav-link">Skills</a></li>
+        <li><a href="../#projects" class="nav-link">Projects</a></li>
+        <li><a href="../#blog" class="nav-link active">Blog</a></li>
+        <li><a href="../#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <svg class="theme-icon theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-icon theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="article-header">
+      <div class="container">
+        <a href="index.html" class="blog-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          All Articles
+        </a>
+        <div class="article-meta">
+          <span class="article-date">Sep 4, 2026</span>
+          <span>7 min read</span>
+        </div>
+        <h1>Feature Engineering for Machine Learning: A Practical Guide</h1>
+      </div>
+    </div>
+
+    <article class="article-body">
+      <h2>Why Feature Engineering Matters</h2>
+      <p>
+        Feature engineering is the process of using domain knowledge to transform raw data into features that better represent the underlying problem to machine learning models. It is often the single most impactful step in an ML pipeline — good features can outperform a more complex model with poor features.
+      </p>
+      <p>
+        As Andrew Ng put it: "Applied ML is basically feature engineering." While that's a simplification, the sentiment is accurate: the quality of your features directly determines the ceiling of your model's performance.
+      </p>
+
+      <h2>Handling Missing Values</h2>
+      <p>
+        Real-world datasets almost always have missing values. How you handle them depends on the nature of the missingness:
+      </p>
+      <pre><code>import pandas as pd
+import numpy as np
+from sklearn.impute import SimpleImputer, KNNImputer
+
+# Check missing values
+print(df.isnull().sum())
+
+# Strategy 1: Drop rows with missing values (use when missing data is minimal)
+df_clean = df.dropna()
+
+# Strategy 2: Simple imputation
+imputer = SimpleImputer(strategy='mean')  # or 'median', 'most_frequent'
+df_imputed = pd.DataFrame(
+    imputer.fit_transform(df),
+    columns=df.columns
+)
+
+# Strategy 3: KNN imputation (uses similar samples to estimate values)
+knn_imputer = KNNImputer(n_neighbors=5)
+df_knn = pd.DataFrame(
+    knn_imputer.fit_transform(df),
+    columns=df.columns
+)</code></pre>
+      <p>
+        <strong>When to use each:</strong> Mean/median for numerical features with random missingness. Most frequent for categorical features. KNN for datasets where similar rows have correlated missing patterns.
+      </p>
+
+      <h2>Encoding Categorical Variables</h2>
+      <p>
+        Machine learning models require numerical input. Categorical variables — like city names, product categories, or color labels — must be converted to numbers.
+      </p>
+
+      <h3>Label Encoding</h3>
+      <p>
+        Assigns a unique integer to each category. Simple but implies an ordinal relationship that may not exist.
+      </p>
+      <pre><code>from sklearn.preprocessing import LabelEncoder
+
+le = LabelEncoder()
+df['color_encoded'] = le.fit_transform(df['color'])
+# red=0, green=1, blue=2</code></pre>
+
+      <h3>One-Hot Encoding</h3>
+      <p>
+        Creates binary columns for each category. Avoids implying order but increases dimensionality.
+      </p>
+      <pre><code># Using pandas
+df_onehot = pd.get_dummies(df, columns=['color'], prefix='color')
+
+# Using scikit-learn (better for production pipelines)
+from sklearn.preprocessing import OneHotEncoder
+
+ohe = OneHotEncoder(sparse_output=False, drop='first')  # drop='first' avoids multicollinearity
+encoded = ohe.fit_transform(df[['color']])
+encoded_df = pd.DataFrame(encoded, columns=ohe.get_feature_names_out(['color']))</code></pre>
+
+      <h3>Target Encoding</h3>
+      <p>
+        Replaces each category with the mean of the target variable for that category. Effective for high-cardinality features (many unique categories) where one-hot encoding would create too many columns.
+      </p>
+      <pre><code># Using category_encoders (pip install category-encoders)
+import category_encoders as ce
+
+target_enc = ce.TargetEncoder(cols=['city'])
+df['city_encoded'] = target_enc.fit_transform(df['city'], df['target'])</code></pre>
+
+      <h2>Feature Scaling</h2>
+      <p>
+        Many algorithms (SVM, KNN, neural networks, linear regression) are sensitive to feature magnitudes. A feature ranging from 0-1000 would dominate one ranging from 0-1, not because it's more important, but because it's larger.
+      </p>
+
+      <h3>StandardScaler (Z-score normalization)</h3>
+      <pre><code>from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X_train)
+# Result: mean=0, std=1</code></pre>
+
+      <h3>MinMaxScaler</h3>
+      <pre><code>from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+X_scaled = scaler.fit_transform(X_train)
+# Result: values between 0 and 1</code></pre>
+
+      <p>
+        <strong>Rule of thumb:</strong> Use StandardScaler as default. Use MinMaxScaler when you need bounded values (e.g., neural network inputs). Tree-based models (<a href="decision-tree-vs-random-forest.html">Decision Trees, Random Forest</a>) don't require scaling since they make splits based on feature thresholds, not magnitudes.
+      </p>
+
+      <h2>Feature Creation</h2>
+      <p>
+        Sometimes the raw features don't capture the full picture. Creating new features from existing ones can reveal patterns the model would otherwise miss.
+      </p>
+      <pre><code># Date features
+df['year'] = df['date'].dt.year
+df['month'] = df['date'].dt.month
+df['day_of_week'] = df['date'].dt.dayofweek
+df['is_weekend'] = df['day_of_week'].isin([5, 6]).astype(int)
+
+# Interaction features
+df['bmi'] = df['weight'] / (df['height'] ** 2)
+df['price_per_sqft'] = df['price'] / df['sqft']
+
+# Polynomial features
+from sklearn.preprocessing import PolynomialFeatures
+poly = PolynomialFeatures(degree=2, interaction_only=True)
+X_poly = poly.fit_transform(X)</code></pre>
+      <p>
+        In my <a href="crop-recommendation-python.html">crop recommendation system</a>, the raw soil parameters (N, P, K, temperature, humidity, pH, rainfall) are sufficient because they directly correspond to known agricultural factors. But in other domains — like housing prices or customer churn — interaction and ratio features often provide significant lifts.
+      </p>
+
+      <h2>Feature Selection</h2>
+      <p>
+        More features isn't always better. Irrelevant or redundant features add noise, increase training time, and can cause overfitting.
+      </p>
+
+      <h3>Correlation Analysis</h3>
+      <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Correlation matrix
+corr_matrix = df.corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+plt.show()
+
+# Drop highly correlated features (threshold > 0.9)
+upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
+to_drop = [col for col in upper.columns if any(upper[col].abs() > 0.9)]
+df_reduced = df.drop(to_drop, axis=1)</code></pre>
+
+      <h3>Feature Importance from Models</h3>
+      <pre><code>from sklearn.ensemble import RandomForestClassifier
+
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+# Get feature importances
+importances = pd.Series(rf.feature_importances_, index=X_train.columns)
+importances.sort_values(ascending=False).head(10).plot(kind='barh')
+plt.title('Top 10 Feature Importances')
+plt.show()</code></pre>
+
+      <h3>Recursive Feature Elimination</h3>
+      <pre><code>from sklearn.feature_selection import RFE
+from sklearn.ensemble import RandomForestClassifier
+
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rfe = RFE(rf, n_features_to_select=10)
+rfe.fit(X_train, y_train)
+
+selected_features = X_train.columns[rfe.support_]
+print(f"Selected features: {list(selected_features)}")</code></pre>
+
+      <h2>A Complete Feature Engineering Pipeline</h2>
+      <p>
+        Combining these techniques into a reproducible pipeline ensures consistency between training and inference:
+      </p>
+      <pre><code>from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+
+# Define feature types
+numeric_features = ['age', 'income', 'score']
+categorical_features = ['city', 'gender']
+
+# Numeric pipeline
+numeric_pipeline = Pipeline([
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler())
+])
+
+# Categorical pipeline
+categorical_pipeline = Pipeline([
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('encoder', OneHotEncoder(handle_unknown='ignore'))
+])
+
+# Combine into a single transformer
+preprocessor = ColumnTransformer([
+    ('num', numeric_pipeline, numeric_features),
+    ('cat', categorical_pipeline, categorical_features)
+])
+
+# Use in a full ML pipeline
+from sklearn.ensemble import RandomForestClassifier
+
+full_pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('classifier', RandomForestClassifier(n_estimators=100, random_state=42))
+])
+
+full_pipeline.fit(X_train, y_train)
+score = full_pipeline.score(X_test, y_test)
+print(f"Accuracy: {score:.4f}")</code></pre>
+      <p>
+        The pipeline approach prevents data leakage — scalers and encoders are fit only on training data and applied to test data, mimicking real-world inference conditions.
+      </p>
+
+      <h2>Common Mistakes</h2>
+      <ul>
+        <li><strong>Fitting on test data</strong> — Always split data first, then fit transformers on training data only</li>
+        <li><strong>Ignoring feature distributions</strong> — Check for skewness; log transforms can help with heavily skewed features</li>
+        <li><strong>Over-engineering</strong> — Start simple; add complexity only when metrics improve</li>
+        <li><strong>Ignoring domain knowledge</strong> — Talk to subject matter experts; they know which features actually matter</li>
+        <li><strong>Not validating changes</strong> — Always measure the impact of feature engineering on model performance using cross-validation</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>
+        Feature engineering is part art, part science. The techniques in this guide — handling missing values, encoding categoricals, scaling, creating interaction features, and selecting the most relevant features — form the foundation of any ML pipeline. Combined with <a href="decision-tree-vs-random-forest.html">strong model selection</a> and proper <a href="deploy-ml-models-streamlit.html">deployment practices</a>, good feature engineering separates working ML projects from impressive ones.
+      </p>
+
+      <div class="article-nav">
+        <a href="neural-networks-tensorflow-beginners.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Previous: Neural Networks with TensorFlow
+        </a>
+        <a href="crop-recommendation-python.html">
+          Next: Crop Recommendation with Python
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="../#home" class="footer-logo">
+          <span class="logo-bracket">&lt;</span>GR<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-tagline">AI/ML Engineer &amp; Python Developer</p>
+        <p class="footer-copyright">&copy; 2026 Gowtham Ravi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/theme.js"></script>
+</body>
+</html>
