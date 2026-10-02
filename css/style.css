@@ -1584,10 +1584,6 @@ width: 11px;
     height: 240px;
   }
 
-  .hero-buttons .btn:nth-child(n+4) {
-    display: none;
-  }
-
   .about-grid {
     gap: 40px;
   }

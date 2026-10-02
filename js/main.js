@@ -86,7 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!navLinksContainer.contains(e.target) && !hamburger.contains(e.target)) {
       hamburger.classList.remove('active');
       navLinksContainer.classList.remove('active');
-      document.body.style.overflow = '';
+      // The resume modal locks body scroll on open. Its trigger is outside
+      // the nav, so this same click bubbles here and would clear that lock.
+      const resumeModal = document.getElementById('resumeModal');
+      if (!resumeModal || resumeModal.hidden) {
+        document.body.style.overflow = '';
+      }
     }
   });
 
