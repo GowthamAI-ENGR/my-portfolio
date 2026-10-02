@@ -1,19 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0B1120"/>
-      <stop offset="100%" style="stop-color:#111827"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#6366F1"/>
-      <stop offset="100%" style="stop-color:#06B6D4"/>
+    <linearGradient id="wash" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#111111"/>
+      <stop offset="100%" style="stop-color:#17191B"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
-  <text x="600" y="220" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="72" font-weight="700" fill="#F8FAFC">Gowtham Ravi</text>
-  <text x="600" y="310" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="36" font-weight="600" fill="url(#accent)">AI/ML Engineer</text>
-  <text x="600" y="400" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#94A3B8">Python &#8226; Machine Learning &#8226; Deep Learning &#8226; Data Science</text>
-  <rect x="350" y="460" width="500" height="1" fill="#1E293B"/>
-  <text x="600" y="520" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="18" fill="#64748B">gowthamai-engr.github.io/my-portfolio</text>
+  <rect width="1200" height="630" fill="url(#wash)"/>
+  <g stroke="#1F2429" stroke-width="1">
+    <line x1="0" y1="72" x2="1200" y2="72"/>
+    <line x1="0" y1="558" x2="1200" y2="558"/>
+    <line x1="96" y1="0" x2="96" y2="630"/>
+    <line x1="1104" y1="0" x2="1104" y2="630"/>
+  </g>
+  <rect x="0" y="0" width="1200" height="3" fill="#0E7490"/>
+  <text x="600" y="150" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18" letter-spacing="6" fill="#0E7490">AI / ML ENGINEER</text>
+  <text x="600" y="290" text-anchor="middle" font-family="'Inter', -apple-system, 'Segoe UI', sans-serif" font-size="86" font-weight="600" letter-spacing="-3" fill="#F5F6F7">Gowtham Ravi</text>
+  <text x="600" y="368" text-anchor="middle" font-family="'Inter', -apple-system, 'Segoe UI', sans-serif" font-size="28" fill="#8B929C">Python &#8226; Machine Learning &#8226; Deep Learning &#8226; Data Science</text>
+  <rect x="440" y="430" width="320" height="1" fill="#2A2F35"/>
+  <text x="600" y="492" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="17" letter-spacing="2" fill="#6B7280">gowthamai-engr.github.io/my-portfolio</text>
 </svg>
